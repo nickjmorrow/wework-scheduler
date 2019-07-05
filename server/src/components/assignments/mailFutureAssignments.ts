@@ -21,7 +21,6 @@ export const mailFutureAssignments = async () => {
 	}
 	const futureAssignments = await assignmentService.getOrCreateFutureAssignments();
 	const assignmentDates = futureAssignments.map(fa => new Date(fa.assignmentDate));
-	console.log(assignmentDates);
 	const minimumDate = assignmentDates.reduce((agg, cur, i, arr) => {
 		if (cur > agg) {
 			cur = agg;
@@ -34,7 +33,6 @@ export const mailFutureAssignments = async () => {
 		}
 		return cur;
 	}, assignmentDates[0]);
-	console.log(minimumDate, maximumDate);
 	const laborers = await laborerService.getLaborers();
 	const dateRange = getPrettyDateRange(minimumDate, maximumDate);
 	laborers.forEach(l => sendMailToLaborer(l, dateRange));

@@ -1,16 +1,6 @@
-import {
-	Column,
-	Entity,
-	OneToMany,
-	PrimaryGeneratedColumn,
-	ManyToMany,
-	JoinTable,
-	OneToOne,
-	ManyToOne,
-	JoinColumn,
-} from 'typeorm';
-import { Laborer } from '../laborers';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Chore } from '../chores';
+import { Laborer } from '../laborers';
 
 @Entity({ schema: 'cs', name: 'assignments' })
 export class Assignment {

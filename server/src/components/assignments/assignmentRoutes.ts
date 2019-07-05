@@ -5,7 +5,7 @@ import { sendNecessaryMail } from './sendNecessaryMail';
 export const assignmentRoutes: Route[] = [
 	{
 		path: '/assignments/sendMail',
-		method: 'post',
+		method: 'get',
 		handler: async (req: Request, res: Response, next) => {
 			await sendNecessaryMail();
 			res.status(200).send();

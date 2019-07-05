@@ -1,7 +1,6 @@
 import { assignmentService } from './assignmentService';
 
 const mailTodaysAssignments = async () => {
-	const todaysAssignments = assignmentService.getTodaysAssignments();
-
+	// const todaysAssignments = assignmentService.getTodaysAssignments();
 	// for each assignment, send mail to laborer
 };

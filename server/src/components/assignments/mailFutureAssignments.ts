@@ -7,8 +7,8 @@ import { typeOrmConfig } from '~/infrastructure/config';
 import { assignmentService } from './assignmentService';
 
 (async () => {
-	await createConnection(typeOrmConfig);
+	const connection = await createConnection(typeOrmConfig);
 
-	const futureAssignments = await assignmentService.getTodaysAssignments();
+	const futureAssignments = await assignmentService.getTodaysAssignments(connection);
 	console.log(futureAssignments);
 })();

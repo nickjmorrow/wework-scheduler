@@ -1,13 +1,18 @@
-import { getConnection } from 'typeorm';
+import { getConnection, Connection } from 'typeorm';
 import { Assignment } from './Assignment';
 import { assignmentGenerator } from './assignmentGenerator';
 import { isDateEqual } from '~/utilities/isDateEqual';
 
-const getAssignments = async () => {
+const getAssignments = async (connection?: Connection) => {
 	const currentDate = new Date();
 	const oneWeekAgo = new Date(currentDate.setDate(currentDate.getDate() - 7));
 
-	return (await getConnection().manager.find(Assignment, {
+	if (!connection) {
+		connection = getConnection();
+	}
+
+	console.log(connection.entityMetadatas);
+	return (await connection.manager.find(Assignment, {
 		relations: ['laborer', 'chore'],
 	})).filter(
 		a =>
@@ -27,9 +32,9 @@ export const assignmentService = {
 		await getConnection().manager.save(Assignment, newAssignments);
 		return true;
 	},
-	getTodaysAssignments: async (): Promise<Assignment[]> => {
+	getTodaysAssignments: async (connection: Connection): Promise<Assignment[]> => {
 		const today = new Date();
-		const assignments = await assignmentService.getAssignments();
+		const assignments = await assignmentService.getAssignments(connection);
 		return assignments.filter(a => isDateEqual(a.assignmentDate, today));
 	},
 	getOrCreateFutureAssignments: async (): Promise<Assignment[]> => {

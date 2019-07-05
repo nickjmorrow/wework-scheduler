@@ -8,14 +8,14 @@ import { TechnologyType } from '../components/technologies/TechnologyType';
 import { Chore, Laborer, Assignment } from 'components';
 
 export const entities = [
-	Experience,
-	ExperienceDetail,
-	Technology,
-	Project,
-	ProjectDetail,
+	// Experience,
+	// ExperienceDetail,
+	// Technology,
+	// Project,
+	// ProjectDetail,
 	Setting,
-	SkillLevel,
-	TechnologyType,
+	// SkillLevel,
+	// TechnologyType,
 	Chore,
 	Laborer,
 	Assignment,

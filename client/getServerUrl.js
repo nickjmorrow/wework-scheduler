@@ -3,7 +3,7 @@ const getServerUrl = () => {
 		case "production":
 			return "https://agile-reaches-55352.herokuapp.com/";
 		case "development":
-			return "http://localhost:3000";
+			return "http://localhost:9000/";
 		default:
 			throw new Error(`Unexpected environment: ${process.env.NODE_ENV}`);
 	}

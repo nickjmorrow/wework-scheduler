@@ -4,6 +4,7 @@ export const laborerTypeDefs = `
 		name: String!
         email: String!
 		dateDeleted: String
+		assignments: [Assignment]!
     }
 
     type Query {

@@ -1,5 +1,11 @@
 import { useThemeContext } from "@nickjmorrow/react-component-library";
 
+export interface Chore {
+	choreId: number;
+	name: string;
+	description: string;
+}
+
 export interface Experience {
   experienceId: number;
   name: string;

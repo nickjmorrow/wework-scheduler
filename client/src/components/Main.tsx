@@ -12,18 +12,16 @@ import {
 	ThemeContext,
 	updateThemeInputs,
 	useThemeContext,
+	StyleConstant,
 } from '@nickjmorrow/react-component-library';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styled from 'styled-components';
 import { FOOTER_HEIGHT } from '../constants';
-import { About } from './About';
-import { AppBar } from './AppBar';
-import { Contact } from './Contact';
-import { ExperienceList } from './ExperienceList';
-import { Headline } from './Headline';
 import './layout.css';
-import { ProjectList } from './ProjectList';
+import { ChoreList } from './ChoreList';
+import { AddChore } from './AddChore';
+
 
 const themeInputs: ArgumentType<typeof updateThemeInputs>[0] = {
 	typography: {
@@ -40,17 +38,16 @@ export const Main: React.FC = () => {
 	return (
 		<ThemeContext.Provider value={getThemeFromNewInputs(themeInputs)}>
 			<Wrapper>
-				<AppBar />
+				
 				<StyledMain spacing={theme.spacing}>
-					<Headline />
+					
 					<div style={{ backgroundColor: 'white' }}>
 						
-							<About />
-							<ExperienceList />
-							<ProjectList />
-							<Contact />
-						
+							
+						heyyyyy
 					</div>
+					<ChoreList />
+					<AddChore />
 				</StyledMain>
 				<Footer />
 			</Wrapper>

@@ -20,5 +20,6 @@ export const typeDefs = mergeTypes([
 	skillLevelTypeDefs,
 	technologyTypeTypeDefs,
 	choreTypeDefs,
-	laborerTypeDefs
+	laborerTypeDefs,
+	assignmentTypeDefs
 ]);

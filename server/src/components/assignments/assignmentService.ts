@@ -3,6 +3,8 @@ import { Assignment } from './Assignment';
 
 export const assignmentService = {
 	getAssignments: async () => {
-		return await getConnection().manager.find(Assignment);
+		return await getConnection().manager.find(Assignment, {
+			relations: ['laborer', 'chore']
+		});
 	},
 };

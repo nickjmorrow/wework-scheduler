@@ -10,7 +10,7 @@ const typeOrmConfig: PostgresConnectionOptions = {
 	password: process.env.TYPEORM_PASSWORD,
 	database: process.env.TYPEORM_DATABASE,
 	synchronize: false,
-	logging: true,
+	logging: false,
 	extra: {
 		max: 2,
 		min: 1,

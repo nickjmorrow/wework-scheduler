@@ -1,7 +1,9 @@
 export const assignmentTypeDefs = `
     type Assignment {
         assignmentId: Int!
-        assignmentDate: String!
+		assignmentDate: String!
+		laborer: Laborer!
+		chore: Chore!
     }
 
     type Query {

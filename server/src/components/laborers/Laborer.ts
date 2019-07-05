@@ -15,6 +15,6 @@ export class Laborer {
 	@Column({ name: 'date_deleted' })
 	public dateDeleted!: Date;
 
-	// @OneToMany(type => Assignment, assignment => assignment.laborer)
-	// public assignments!: Assignment[];
+	@OneToMany(type => Assignment, assignment => assignment.laborer)
+	public assignments!: Assignment[];
 }

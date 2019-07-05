@@ -3,7 +3,15 @@ import cors from 'cors';
 import parser from 'body-parser';
 import compression from 'compression';
 
-export const handleCors = (router: Router) => router.use(cors({ credentials: true, origin: '*' }));
+export const handleOptions = (router: Router) => {
+	router.use((req, res) => {
+		if ('OPTIONS' === req.method) {
+			res.send(200);
+		}
+	})
+}
+
+export const handleCors = (router: Router) => router.use(cors());
 
 export const handleBodyRequestParsing = (router: Router) => {
 	router.use(parser.urlencoded({ extended: true }));

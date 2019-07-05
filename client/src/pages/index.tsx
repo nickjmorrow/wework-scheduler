@@ -2,66 +2,29 @@ import { graphql } from 'gatsby';
 import React from 'react';
 import Main from '../components/Main';
 import SEO from '../components/seo';
-import { Experience, Project, Setting, Technology } from '../types';
+import { Experience, Project, Setting, Technology, Chore } from '../types';
+import { WrapRootElement } from '../WrapRootElement';
 
-export const GatsbyQuery = graphql`
-	{
-		data {
-			settings {
-				settingId
-				value
-			}
-			experiences {
-				experienceId
-				name
-				experienceDetails {
-					experienceDetailId
-					description
-				}
-				technologies {
-					technologyId
-					name
-					skillLevel {
-						skillLevelId
-						description
-					}
-				}
-			}
-			projects {
-				name
-				projectId
-				projectDetails {
-					description
-				}
-				technologies {
-					technologyId
-					name
-				}
-			}
-			technologies {
-				name
-				skillLevel {
-					skillLevelId
-					description
-				}
-			}
-		}
-	}
-`;
+// export const GatsbyQuery = graphql`
+// 	{
+// 		data {
+// 			chores {
+// 				choreId
+// 			}
+// 		}
+// 	}
+// `;
 
-interface Data {
-	settings: Setting[];
-	experiences: Experience[];
-	projects: Project[];
-	technologies: Technology[];
-}
+// interface Data {
+// 	chores: Chore[];
+// }
 
-const IndexPage = ({ data }: { data: Data }) => {
+const IndexPage = () => {
 	return (
-		<>
+		<WrapRootElement>
 			<Main />
-			<SEO />
-		</>
+			{/* <SEO /> */}
+		</WrapRootElement>
 	);
 };
 

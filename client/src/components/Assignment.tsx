@@ -22,7 +22,11 @@ export const Assignment: React.FC<{ assignment: AssignmentType }> = ({ assignmen
 				<Typography>{formattedAssignment.laborer.name}</Typography>
 			</div>
 			<div style={{ width: '150px', textAlign: 'right', display: 'flex', justifyContent: 'flex-end' }}>
-				<Typography>{getPrettyDate(assignment)}</Typography>
+				<Typography
+					colorVariant={new Date(assignment.assignmentDate) < new Date() ? 'secondaryDark' : 'primaryDark'}
+				>
+					{getPrettyDate(assignment)}
+				</Typography>
 			</div>
 		</div>
 	);
@@ -37,5 +41,5 @@ const getPrettyDate = (assignment: AssignmentType) => {
 	const { formattedDate } = assignment;
 	const monthName = monthMapping[formattedDate.getUTCMonth()];
 	const dayOfWeek = dayOfWeekOptions.find(o => o.value === formattedDate.getUTCDay()).label;
-	return `${dayOfWeek}, ${monthName} ${formattedDate.getDate()}`;
+	return `${dayOfWeek}, ${monthName} ${formattedDate.getUTCDate()}`;
 };

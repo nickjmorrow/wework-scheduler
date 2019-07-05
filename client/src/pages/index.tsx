@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { Main } from '../components/Main';
 import { WrapRootElement } from '../WrapRootElement';
+import { SEO } from '../components/seo';
 
 const IndexPage = () => {
 	return (
@@ -9,7 +10,7 @@ const IndexPage = () => {
 			<BrowserRouter>
 				<Main />
 			</BrowserRouter>
-			{/* <SEO /> */}
+			<SEO />
 		</WrapRootElement>
 	);
 };

@@ -1,4 +1,14 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn, ManyToMany, JoinTable, OneToOne, ManyToOne, JoinColumn } from 'typeorm';
+import {
+	Column,
+	Entity,
+	OneToMany,
+	PrimaryGeneratedColumn,
+	ManyToMany,
+	JoinTable,
+	OneToOne,
+	ManyToOne,
+	JoinColumn,
+} from 'typeorm';
 import { Laborer } from '../laborers';
 import { Chore } from '../chores';
 
@@ -12,7 +22,7 @@ export class Assignment {
 	public laborer!: Laborer;
 
 	@ManyToOne(type => Chore, chore => chore.assignments)
-	@JoinColumn({name: 'chore_id'})
+	@JoinColumn({ name: 'chore_id' })
 	public chore!: Chore;
 
 	@Column({ name: 'assignment_date' })

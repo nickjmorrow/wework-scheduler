@@ -29,7 +29,6 @@ export const Assignments: React.FC = () => {
 			{({ loading, error, data, refetch }) => {
 				if (loading) return null;
 				if (!data || !data.assignments) return null;
-				console.log(data);
 				return (
 					<div style={{ margin: '128px auto', width: 'max-content' }}>
 						<Typography styleVariant={1} style={{ marginBottom: '64px' }}>
@@ -52,7 +51,7 @@ const sortAssignmentsByDate = (a: AssignmentType, b: AssignmentType) => {
 	const dateA = new Date(a.assignmentDate);
 	const dateB = new Date(b.assignmentDate);
 	if (dateA === dateB) {
-		return 0;
+		return a.chore.choreId > b.chore.choreId ? 1 : -1;
 	}
 	return dateA > dateB ? 1 : -1;
 };

@@ -1,5 +1,5 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn, ManyToMany, JoinTable } from 'typeorm';
-import { Assignment } from 'components'
+import { Assignment } from 'components';
 
 @Entity({ schema: 'cs', name: 'chores' })
 export class Chore {
@@ -15,7 +15,7 @@ export class Chore {
 	@Column()
 	public description!: string;
 
-	@Column({name: 'day_of_week_id'})
+	@Column({ name: 'day_of_week_id' })
 	public dayOfWeekId!: number;
 
 	@Column({ name: 'date_deleted' })

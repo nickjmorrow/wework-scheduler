@@ -9,7 +9,6 @@ export const choreService = {
 	},
 	addChore: async (chore: Chore) => {
 		return await getConnection().manager.save(Chore, chore);
-		
 	},
 	removeChore: async (choreId: number) => {
 		const chore = await getConnection().manager.findOneOrFail(Chore, {
@@ -21,5 +20,5 @@ export const choreService = {
 	},
 	updateChore: async (chore: Chore) => {
 		return await getConnection().manager.save(Chore, chore);
-	}
+	},
 };

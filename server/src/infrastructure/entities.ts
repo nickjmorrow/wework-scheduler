@@ -7,7 +7,6 @@ import { SkillLevel } from '../components/technologies/SkillLevel';
 import { TechnologyType } from '../components/technologies/TechnologyType';
 import { Chore, Laborer, Assignment } from 'components';
 
-
 export const entities = [
 	Setting,
 	Experience,
@@ -20,5 +19,5 @@ export const entities = [
 	TechnologyType,
 	Chore,
 	Laborer,
-	Assignment
+	Assignment,
 ];

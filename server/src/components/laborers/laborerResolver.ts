@@ -26,6 +26,6 @@ export const laborerResolver = {
 				return;
 			}
 			return laborerService.updateLaborer(args);
-		}
-	}
+		},
+	},
 };

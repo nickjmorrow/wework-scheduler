@@ -13,19 +13,19 @@ export class Project {
 	@Column()
 	public tagline!: string;
 
-	@Column({name: 'github_url'})
+	@Column({ name: 'github_url' })
 	public githubUrl!: string;
 
-	@Column({name: 'demo_url'})
+	@Column({ name: 'demo_url' })
 	public demoUrl!: string;
 
 	@OneToMany(type => ProjectDetail, projectDetail => projectDetail.Project)
 	public projectDetails!: ProjectDetail[];
 
-	@Column({name: 'order_id'})
+	@Column({ name: 'order_id' })
 	public orderId!: number;
 
-	@Column({name: 'date_deleted'})
+	@Column({ name: 'date_deleted' })
 	public dateDeleted!: Date;
 
 	@ManyToMany(type => Technology, technology => technology.technologyId)

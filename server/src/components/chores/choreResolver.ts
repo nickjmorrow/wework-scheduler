@@ -26,6 +26,6 @@ export const choreResolver = {
 				return;
 			}
 			return choreService.updateChore(args);
-		}
-	}
+		},
+	},
 };

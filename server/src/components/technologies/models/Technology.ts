@@ -23,6 +23,6 @@ export class Technology {
 	public skillLevel!: SkillLevel;
 
 	@ManyToOne(type => TechnologyType, technologyType => technologyType.technologyTypeId)
-	@JoinColumn({ name: 'technology_type_id'})
+	@JoinColumn({ name: 'technology_type_id' })
 	public technologyType!: TechnologyType;
 }

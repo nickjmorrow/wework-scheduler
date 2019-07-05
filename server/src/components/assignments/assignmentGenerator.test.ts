@@ -1,9 +1,9 @@
+import { Assignment, Chore, choreService, laborerService } from 'components';
 import 'module-alias/register';
-import { laborerService, choreService, Chore, Assignment } from 'components';
+import sinon from 'sinon';
+import { DayOfWeek } from '~/constants';
 import { Laborer } from '../laborers';
 import { assignmentGenerator } from './assignmentGenerator';
-import { DayOfWeek } from '~/constants';
-import sinon from 'sinon';
 import { assignmentService } from './assignmentService';
 
 const makeLaborer = (laborerId: number) => ({
@@ -25,33 +25,50 @@ const makeChore = (choreId: number, dayOfWeek: DayOfWeek) => ({
 	assignments: [],
 });
 
+const expectedAssignments = [
+	{ choreId: 2, laborerId: 1, assignmentMonth: 6, assignmentDate: 24 },
+	{ choreId: 1, laborerId: 2, assignmentMonth: 6, assignmentDate: 29 },
+	{ choreId: 2, laborerId: 3, assignmentMonth: 6, assignmentDate: 31 },
+	{ choreId: 3, laborerId: 4, assignmentMonth: 6, assignmentDate: 31 },
+	{ choreId: 4, laborerId: 5, assignmentMonth: 7, assignmentDate: 2 },
+	{ choreId: 1, laborerId: 6, assignmentMonth: 7, assignmentDate: 5 },
+	{ choreId: 2, laborerId: 7, assignmentMonth: 7, assignmentDate: 7 },
+	{ choreId: 3, laborerId: 1, assignmentMonth: 7, assignmentDate: 7 },
+	{ choreId: 4, laborerId: 2, assignmentMonth: 7, assignmentDate: 9 },
+	{ choreId: 1, laborerId: 3, assignmentMonth: 7, assignmentDate: 12 },
+	{ choreId: 2, laborerId: 4, assignmentMonth: 7, assignmentDate: 14 },
+	{ choreId: 3, laborerId: 5, assignmentMonth: 7, assignmentDate: 14 },
+	{ choreId: 4, laborerId: 6, assignmentMonth: 7, assignmentDate: 16 },
+	{ choreId: 1, laborerId: 7, assignmentMonth: 7, assignmentDate: 19 },
+];
+
 const chores: Chore[] = [
 	{ choreId: 1, dayOfWeek: DayOfWeek.Monday },
 	{ choreId: 2, dayOfWeek: DayOfWeek.Wednesday },
 	{ choreId: 3, dayOfWeek: DayOfWeek.Wednesday },
 	{ choreId: 4, dayOfWeek: DayOfWeek.Friday },
-].map(c => makeChore(c.choreId, c.dayOfWeek))
+].map(c => makeChore(c.choreId, c.dayOfWeek));
 
-const assignments : Assignment[] = [
+const assignments: Assignment[] = [
 	{
 		assignmentId: 1,
 		laborer: laborers.find(l => l.laborerId === 1)!,
 		chore: chores.find(c => c.choreId === 1)!,
-		assignmentDate: new Date(2019, 6, 22)
+		assignmentDate: new Date(2019, 6, 22),
 	},
 	{
 		assignmentId: 2,
 		laborer: laborers.find(l => l.laborerId === 2)!,
 		chore: chores.find(c => c.choreId === 3)!,
-		assignmentDate: new Date(2019, 6, 24)
+		assignmentDate: new Date(2019, 6, 24),
 	},
 	{
 		assignmentId: 3,
 		laborer: laborers.find(l => l.laborerId === 3)!,
 		chore: chores.find(c => c.choreId === 4)!,
-		assignmentDate: new Date(2019, 6, 26)
-	}
-]
+		assignmentDate: new Date(2019, 6, 26),
+	},
+];
 
 describe('assignment generator', () => {
 	it('works', async () => {
@@ -63,19 +80,21 @@ describe('assignment generator', () => {
 		};
 		assignmentService.getAssignments = () => {
 			return Promise.resolve(assignments);
-		}
-		let clock = sinon.useFakeTimers(new Date(2019, 6, 22).getTime());
+		};
+
+		Math.random = () => 0;
+		sinon.useFakeTimers(new Date(2019, 6, 22).getTime());
 		const generatedAssignments = await assignmentGenerator.generateAssignments();
 
-		printAssignments(generatedAssignments);
-
-		expect(true).toBe(true);
+		expect(formatAssignments(generatedAssignments)).toEqual(expectedAssignments);
 	});
 });
 
-const printAssignments = (assignments: Assignment[]) => {
-	assignments.forEach(a => {
-		const message = `chore: ${a.chore.choreId}, laborer: ${a.laborer.laborerId}, date: ${a.assignmentDate.getMonth()}/${a.assignmentDate.getDate()}`
-		console.log(message);
-	})
-}
+const formatAssignments = (assignments: Assignment[]) => {
+	return assignments.map(a => ({
+		choreId: a.chore.choreId,
+		laborerId: a.laborer.laborerId,
+		assignmentMonth: a.assignmentDate.getUTCMonth(),
+		assignmentDate: a.assignmentDate.getUTCDate(),
+	}));
+};

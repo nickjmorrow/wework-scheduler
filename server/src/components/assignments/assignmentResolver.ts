@@ -4,7 +4,6 @@ import { isAuthorized } from '~/utilities/isAuthorized';
 export const assignmentResolver = {
 	Query: {
 		async assignments(_: any, args: any, ctx: any) {
-			console.log(ctx.headers.authorization);
 			return await assignmentService.getAssignments();
 		},
 	},
@@ -13,9 +12,9 @@ export const assignmentResolver = {
 			if (!isAuthorized(ctx)) {
 				return;
 			}
-			
+
 			await assignmentService.generateAssignments();
 			return true;
-		}
-	}
+		},
+	},
 };

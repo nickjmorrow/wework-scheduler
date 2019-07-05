@@ -11,16 +11,15 @@ applyMiddleware(middleware, app);
 
 app.use(express.json());
 
-app.use(
-	'/graphiql', (req, res, next) => {
-		return graphiqlExpress({
-			endpointURL: '/graphql',
-			
-		})
-	}
-);
+app.use('/graphiql', (req, res, next) => {
+	return graphiqlExpress({
+		endpointURL: '/graphql',
+	});
+});
 
 // TODO: look into merging schemas
 
-app.use('/', bodyParser.json(), (req, res, next) => graphqlExpress({ schema: mergedSchema, context: req})(req, res, next));
+app.use('/', bodyParser.json(), (req, res, next) =>
+	graphqlExpress({ schema: mergedSchema, context: req })(req, res, next),
+);
 applyMiddleware(errorHandlers, app);

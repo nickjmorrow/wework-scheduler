@@ -8,7 +8,6 @@ import { skillLevelTypeDefs } from '../technologies/skillLevelTypeDefs';
 import { technologyTypeTypeDefs } from '../technologies/technologyTypeTypeDefs';
 import { choreTypeDefs, laborerTypeDefs, assignmentTypeDefs } from 'components';
 
-
 export const typeDefs = mergeTypes([
 	projectTypeDefs,
 	projectTechnologyTypeDefs,
@@ -21,5 +20,5 @@ export const typeDefs = mergeTypes([
 	technologyTypeTypeDefs,
 	choreTypeDefs,
 	laborerTypeDefs,
-	assignmentTypeDefs
+	assignmentTypeDefs,
 ]);

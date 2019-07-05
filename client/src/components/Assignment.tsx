@@ -1,12 +1,10 @@
-import * as React from 'react';
-import { Assignment as AssignmentType } from '../types';
-import { monthMapping, dayOfWeekOptions } from '../constants';
-import { assign } from 'apollo-utilities';
 import { Typography } from '@nickjmorrow/react-component-library';
+import * as React from 'react';
+import { dayOfWeekOptions, monthMapping } from '../constants';
+import { Assignment as AssignmentType } from '../types';
 
 export const Assignment: React.FC<{ assignment: AssignmentType }> = ({ assignment }) => {
 	const formattedAssignment = formatAssignment(assignment);
-	console.log(typeof parseInt(assignment.assignmentDate, 10));
 	return (
 		<div style={{ display: 'flex', flexDirection: 'row', padding: '8px', justifyContent: 'flex-start', width: 'max-content' }}>
 			<div style={{minWidth: '250px'}}>

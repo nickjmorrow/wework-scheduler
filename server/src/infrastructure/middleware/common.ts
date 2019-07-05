@@ -8,8 +8,8 @@ export const handleOptions = (router: Router) => {
 		if ('OPTIONS' === req.method) {
 			res.send(200);
 		}
-	})
-}
+	});
+};
 
 export const handleCors = (router: Router) => router.use(cors());
 

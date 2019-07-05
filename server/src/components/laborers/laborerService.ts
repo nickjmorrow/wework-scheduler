@@ -5,7 +5,7 @@ export const laborerService = {
 	getLaborers: async () => {
 		return (await getConnection().manager.find(Laborer, {
 			relations: ['assignments'],
-		})).filter(l => l.dateDeleted === null)
+		})).filter(l => l.dateDeleted === null);
 	},
 	addLaborer: async (laborer: Laborer) => {
 		return await getConnection().manager.save(Laborer, laborer);
@@ -20,5 +20,5 @@ export const laborerService = {
 		laborer.dateDeleted = new Date();
 		await getConnection().manager.save(Laborer, laborer);
 		return laborerId;
-	}
+	},
 };

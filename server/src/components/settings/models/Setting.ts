@@ -1,6 +1,6 @@
 import { Column, Entity, PrimaryColumn } from 'typeorm';
 
-@Entity({ schema: 'portfolio', name: 'settings' })
+@Entity({ schema: 'cs', name: 'settings' })
 export class Setting {
 	@PrimaryColumn({ name: 'setting_id' })
 	public settingId!: string;

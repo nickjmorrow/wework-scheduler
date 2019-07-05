@@ -5,4 +5,7 @@ export const settingsProvider = {
 	getDatabaseSettings: async () => {
 		return await getConnection().manager.find(Setting);
 	},
+	getDatabaseSetting: async (settingId: string) => {
+		return await getConnection().manager.findOneOrFail(Setting, settingId);
+	},
 };

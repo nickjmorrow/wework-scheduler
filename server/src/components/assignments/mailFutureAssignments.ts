@@ -2,6 +2,7 @@ import { assignmentService, Assignment } from '~/components/assignments';
 import { laborerService, Laborer } from '~/components/laborers';
 import { MIN_DAYS_UNTIL_RESEND_EMAIL, monthMapping } from '~/constants';
 import { mailTransporter } from '~/infrastructure/mailTransporter';
+import { settingsProvider } from '../settings';
 
 export const mailFutureAssignments = async () => {
 	const assignments = await assignmentService.getAssignments();
@@ -15,8 +16,11 @@ export const mailFutureAssignments = async () => {
 		}, new Date());
 
 	const dateDifference = dateDiffInDays(new Date(), lastAssignmentDate);
-	console.log(dateDifference);
-	if (dateDifference > MIN_DAYS_UNTIL_RESEND_EMAIL) {
+	const minimumDaysUntilResendEmail = parseInt(
+		(await settingsProvider.getDatabaseSetting(MIN_DAYS_UNTIL_RESEND_EMAIL)).value,
+		10,
+	);
+	if (dateDifference > minimumDaysUntilResendEmail) {
 		return;
 	}
 	const futureAssignments = await assignmentService.getOrCreateFutureAssignments();

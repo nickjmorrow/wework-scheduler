@@ -3,13 +3,14 @@ import { choreService } from '../chores';
 import { assignmentService } from './assignmentService';
 import { NUM_DAYS_IN_WEEK, WEEKS_RANGE } from '~/constants';
 import { isDateEqual } from '~/utilities/isDateEqual';
+import { settingsProvider } from '../settings';
 
 export const assignmentGenerator = {
 	generateAssignments: async () => {
 		const allLaborers = await laborerService.getLaborers();
 		const chores = await choreService.getChores();
 		const assignments = await assignmentService.getAssignments();
-		const endDate = getEndDate();
+		const endDate = await getEndDate();
 
 		const newAssignments: Assignment[] = [];
 		let laborerPool: Laborer[] = [...allLaborers];
@@ -45,10 +46,10 @@ export const assignmentGenerator = {
 	},
 };
 
-const getWeeksRange = () => WEEKS_RANGE;
+const getWeeksRange = async () => parseInt((await settingsProvider.getDatabaseSetting(WEEKS_RANGE)).value, 10);
 
-const getEndDate = () => {
+const getEndDate = async () => {
 	const endDate = new Date();
-	endDate.setDate(new Date().getDate() + NUM_DAYS_IN_WEEK * getWeeksRange());
+	endDate.setDate(new Date().getDate() + NUM_DAYS_IN_WEEK * (await getWeeksRange()));
 	return endDate;
 };

@@ -9,8 +9,8 @@ export enum DayOfWeek {
 }
 
 export const NUM_DAYS_IN_WEEK = 7;
-export const WEEKS_RANGE = 4;
-export const MIN_DAYS_UNTIL_RESEND_EMAIL = 29;
+export const WEEKS_RANGE = 'WEEKS_RANGE';
+export const MIN_DAYS_UNTIL_RESEND_EMAIL = 'MIN_DAYS_UNTIL_RESEND_EMAIL';
 
 export const monthMapping = {
 	0: 'January',

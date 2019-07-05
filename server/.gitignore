@@ -6,3 +6,4 @@ secrets.ts
 .env
 .log
 *.log
+node_modules/module_alias

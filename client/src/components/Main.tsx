@@ -5,7 +5,16 @@
  * See: https://www.gatsbyjs.org/docs/static-query/
  */
 
-import { ArgumentType, Footer, getThemeFromNewInputs, StyleConstant, ThemeContext, updateThemeInputs, useThemeContext, PopulatedAppBar } from '@nickjmorrow/react-component-library';
+import {
+	ArgumentType,
+	Footer,
+	getThemeFromNewInputs,
+	StyleConstant,
+	ThemeContext,
+	updateThemeInputs,
+	useThemeContext,
+	PopulatedAppBar,
+} from '@nickjmorrow/react-component-library';
 import React from 'react';
 import styled from 'styled-components';
 import { FOOTER_HEIGHT } from '../constants';
@@ -22,13 +31,13 @@ const themeInputs: ArgumentType<typeof updateThemeInputs>[0] = {
 	typography: {
 		fontFamily: {
 			default: 'Overpass, sans-serif',
-			title: 'Patua One, sans-serif'
+			title: 'Patua One, sans-serif',
 		},
 	},
 	colors: {
 		core: {
-			hue: chosenHue
-		}
+			hue: chosenHue,
+		},
 	},
 	defaultShowBoxShadow: false,
 };

@@ -8,7 +8,6 @@ import { TechnologyType } from '../components/technologies/TechnologyType';
 import { Chore, Laborer, Assignment } from 'components';
 
 export const entities = [
-	Setting,
 	Experience,
 	ExperienceDetail,
 	Technology,

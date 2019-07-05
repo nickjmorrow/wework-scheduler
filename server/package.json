@@ -1,5 +1,5 @@
 {
-	"name": "@nickjmorrow/chore-emailer-server",
+	"name": "@nickjmorrow/wework-scheduler-server",
 	"version": "0.1.1",
 	"description": "",
 	"main": "index.js",

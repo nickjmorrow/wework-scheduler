@@ -1,19 +1,14 @@
-import dotenv from 'dotenv';
-import 'module-alias/register';
+require('dotenv').config();
+require('module-alias/register');
 
-import { assignmentService } from 'components';
+import 'reflect-metadata';
 import { createConnection } from 'typeorm';
 import { typeOrmConfig } from '~/infrastructure/config';
+import { assignmentService } from './assignmentService';
 
 (async () => {
-	require('dotenv').config();
-	console.log(typeOrmConfig);
-	console.log(process.env);
 	await createConnection(typeOrmConfig);
-	const futureAssignments = await assignmentService.getOrCreateFutureAssignments();
 
-	// mail future assignments to all laborers
-
+	const futureAssignments = await assignmentService.getTodaysAssignments();
 	console.log(futureAssignments);
-	console.log('hello');
 })();

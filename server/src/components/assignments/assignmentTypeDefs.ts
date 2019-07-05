@@ -6,6 +6,7 @@ export const assignmentTypeDefs = `
 		assignmentDate: Date!
 		laborer: Laborer!
 		chore: Chore!
+		isEmailSent: Boolean!
     }
 
     type Query {

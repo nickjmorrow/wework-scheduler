@@ -5,6 +5,7 @@ import { Assignment as AssignmentType } from '../types';
 
 export const Assignment: React.FC<{ assignment: AssignmentType }> = ({ assignment }) => {
 	const formattedAssignment = formatAssignment(assignment);
+	const colorVariant = new Date(assignment.assignmentDate) < new Date() ? 'secondaryDark' : 'primaryDark';
 	return (
 		<div
 			style={{
@@ -16,17 +17,13 @@ export const Assignment: React.FC<{ assignment: AssignmentType }> = ({ assignmen
 			}}
 		>
 			<div style={{ minWidth: '250px' }}>
-				<Typography>{formattedAssignment.chore.name}</Typography>
+				<Typography colorVariant={colorVariant}>{formattedAssignment.chore.name}</Typography>
 			</div>
 			<div style={{ minWidth: '250px' }}>
-				<Typography>{formattedAssignment.laborer.name}</Typography>
+				<Typography colorVariant={colorVariant}>{formattedAssignment.laborer.name}</Typography>
 			</div>
 			<div style={{ width: '150px', textAlign: 'right', display: 'flex', justifyContent: 'flex-end' }}>
-				<Typography
-					colorVariant={new Date(assignment.assignmentDate) < new Date() ? 'secondaryDark' : 'primaryDark'}
-				>
-					{getPrettyDate(assignment)}
-				</Typography>
+				<Typography colorVariant={colorVariant}>{getPrettyDate(assignment)}</Typography>
 			</div>
 		</div>
 	);

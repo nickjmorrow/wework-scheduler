@@ -28,6 +28,9 @@ export class Assignment {
 	@Column({ name: 'assignment_date' })
 	public assignmentDate!: Date;
 
+	@Column({ name: 'is_email_sent' })
+	public isEmailSent!: boolean;
+
 	public constructor(assignmentInput?: AssignmentInput) {
 		if (assignmentInput) {
 			const { laborer, chore, assignmentDate } = assignmentInput;

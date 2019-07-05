@@ -54,18 +54,21 @@ const assignments: Assignment[] = [
 		assignmentId: 1,
 		laborer: laborers.find(l => l.laborerId === 1)!,
 		chore: chores.find(c => c.choreId === 1)!,
+		isEmailSent: false,
 		assignmentDate: new Date(2019, 6, 22),
 	},
 	{
 		assignmentId: 2,
 		laborer: laborers.find(l => l.laborerId === 2)!,
 		chore: chores.find(c => c.choreId === 3)!,
+		isEmailSent: false,
 		assignmentDate: new Date(2019, 6, 24),
 	},
 	{
 		assignmentId: 3,
 		laborer: laborers.find(l => l.laborerId === 3)!,
 		chore: chores.find(c => c.choreId === 4)!,
+		isEmailSent: false,
 		assignmentDate: new Date(2019, 6, 26),
 	},
 ];

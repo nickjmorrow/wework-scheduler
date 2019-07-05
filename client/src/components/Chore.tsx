@@ -30,7 +30,6 @@ const ChoreInternal: React.FC<{ mutate: MutationFunc; chore: ChoreType; refetch(
 	const [editedDescription, setEditedDescription] = useState(chore.description);
 	const [editedDayOfWeekId, setDayOfWeekId] = useState(chore.dayOfWeekId);
 
-
 	return (
 		<Mutation mutation={updateChoreMutation}>
 			{(updateChore, { data }) => (
@@ -47,14 +46,14 @@ const ChoreInternal: React.FC<{ mutate: MutationFunc; chore: ChoreType; refetch(
 						const handleUpdate = async () => {
 							await updateChore({
 								variables: {
-									choreId: chore.choreId, 
+									choreId: chore.choreId,
 									name: editedName,
 									description: editedDescription,
-									dayOfWeekId: editedDayOfWeekId
-								}
-							})
+									dayOfWeekId: editedDayOfWeekId,
+								},
+							});
 							refetch();
-						}
+						};
 						const toggleIsEditing = () => {
 							if (isEditing) {
 								handleUpdate();
@@ -63,19 +62,30 @@ const ChoreInternal: React.FC<{ mutate: MutationFunc; chore: ChoreType; refetch(
 						};
 						return (
 							<div
-								style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '8px 0' }}
+								style={{
+									display: 'flex',
+									flexDirection: 'row',
+									alignItems: 'center',
+									padding: '8px 0',
+								}}
 							>
 								{isEditing ? (
 									<ChoreInfoWrapper>
 										<TextInput
-										value={editedName}
-										onChange={e => setEditedName(e.currentTarget.value)}
-									/>
+											value={editedName}
+											onChange={e => setEditedName(e.currentTarget.value)}
+										/>
 										<TextInput
 											value={editedDescription}
 											onChange={e => setEditedDescription(e.currentTarget.value)}
 										/>
-										<Select options={dayOfWeekOptions} currentOption={dayOfWeekOptions.find(dowo => dowo.value === editedDayOfWeekId)} onChange={(o) => setDayOfWeekId(o.value)} />
+										<Select
+											options={dayOfWeekOptions}
+											currentOption={dayOfWeekOptions.find(
+												dowo => dowo.value === editedDayOfWeekId,
+											)}
+											onChange={o => setDayOfWeekId(o.value)}
+										/>
 									</ChoreInfoWrapper>
 								) : (
 									<ChoreInfoWrapper>
@@ -85,8 +95,18 @@ const ChoreInternal: React.FC<{ mutate: MutationFunc; chore: ChoreType; refetch(
 										<ChoreDetail>
 											<Typography>{editedDescription}</Typography>
 										</ChoreDetail>
-										<div style={{height: '40px', display: 'flex', alignItems: 'center', margin: 'auto 0', minWidth: '128px'}}>
-											<Typography>{dayOfWeekOptions.find(dowo => dowo.value === editedDayOfWeekId)!.label}</Typography>
+										<div
+											style={{
+												height: '40px',
+												display: 'flex',
+												alignItems: 'center',
+												margin: 'auto 0',
+												minWidth: '128px',
+											}}
+										>
+											<Typography>
+												{dayOfWeekOptions.find(dowo => dowo.value === editedDayOfWeekId)!.label}
+											</Typography>
 										</div>
 									</ChoreInfoWrapper>
 								)}
@@ -99,8 +119,8 @@ const ChoreInternal: React.FC<{ mutate: MutationFunc; chore: ChoreType; refetch(
 										gridColumnGap: '8px',
 									}}
 								>
-									<CloseIconButton styleVariant={2} sizeVariant={2} onClick={handleDelete} />
 									<EditIconButton styleVariant={2} sizeVariant={2} onClick={toggleIsEditing} />
+									<CloseIconButton styleVariant={2} sizeVariant={2} onClick={handleDelete} />
 								</div>
 							</div>
 						);

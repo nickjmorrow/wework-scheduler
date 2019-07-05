@@ -21,10 +21,7 @@ export const updateLaborerMutation = gql`
 	}
 `;
 
-const LaborerInternal: React.FC<{ laborer: LaborerType; refetch(): void }> = ({
-	laborer,
-	refetch,
-}) => {
+const LaborerInternal: React.FC<{ laborer: LaborerType; refetch(): void }> = ({ laborer, refetch }) => {
 	const [isEditing, setIsEditing] = useState(false);
 	const [editedName, setEditedName] = useState(laborer.name);
 	const [editedEmail, setEditedEmail] = useState(laborer.email);
@@ -45,13 +42,13 @@ const LaborerInternal: React.FC<{ laborer: LaborerType; refetch(): void }> = ({
 						const handleUpdate = async () => {
 							await updateLaborer({
 								variables: {
-									laborerId: laborer.laborerId, 
+									laborerId: laborer.laborerId,
 									name: editedName,
 									email: editedEmail,
-								}
-							})
+								},
+							});
 							refetch();
-						}
+						};
 						const toggleIsEditing = () => {
 							if (isEditing) {
 								handleUpdate();
@@ -60,14 +57,19 @@ const LaborerInternal: React.FC<{ laborer: LaborerType; refetch(): void }> = ({
 						};
 						return (
 							<div
-								style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '8px 0' }}
+								style={{
+									display: 'flex',
+									flexDirection: 'row',
+									alignItems: 'center',
+									padding: '8px 0',
+								}}
 							>
 								{isEditing ? (
 									<ChoreInfoWrapper>
 										<TextInput
-										value={editedName}
-										onChange={e => setEditedName(e.currentTarget.value)}
-									/>
+											value={editedName}
+											onChange={e => setEditedName(e.currentTarget.value)}
+										/>
 										<TextInput
 											value={editedEmail}
 											onChange={e => setEditedEmail(e.currentTarget.value)}
@@ -92,8 +94,8 @@ const LaborerInternal: React.FC<{ laborer: LaborerType; refetch(): void }> = ({
 										gridColumnGap: '8px',
 									}}
 								>
+									<EditIconButton styleVariant={2} sizeVariant={2} onClick={toggleIsEditing} />
 									<CloseIconButton styleVariant={2} sizeVariant={2} onClick={handleDelete} />
-									<EditIconButton styleVariant={2}  sizeVariant={2} onClick={toggleIsEditing} />
 								</div>
 							</div>
 						);

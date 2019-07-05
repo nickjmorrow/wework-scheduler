@@ -4,6 +4,21 @@ export interface Chore {
 	choreId: number;
 	name: string;
 	description: string;
+	dayOfWeekId: number;
+}
+
+export interface Laborer {
+	laborerId: null;
+	name: string;
+	email: string;
+}
+
+export interface Assignment {
+	assignmentId: number;
+	assignmentDate: string;
+	formattedDate: Date;
+	chore: Chore;
+	laborer: Laborer;
 }
 
 export interface Experience {

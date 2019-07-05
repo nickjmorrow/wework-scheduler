@@ -13,8 +13,15 @@ export class Laborer {
 	public email!: string;
 
 	@Column({ name: 'date_deleted' })
-	public dateDeleted!: Date;
+	public dateDeleted?: Date;
 
 	@OneToMany(type => Assignment, assignment => assignment.laborer)
 	public assignments!: Assignment[];
+
+	public constructor(laborer?: Laborer) {
+		if (laborer) {
+			this.name = laborer.name;
+			this.email = laborer.email;
+		}
+	}
 }

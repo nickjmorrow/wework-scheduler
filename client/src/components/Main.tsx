@@ -5,29 +5,30 @@
  * See: https://www.gatsbyjs.org/docs/static-query/
  */
 
-import {
-	ArgumentType,
-	Footer,
-	getThemeFromNewInputs,
-	ThemeContext,
-	updateThemeInputs,
-	useThemeContext,
-	StyleConstant,
-} from '@nickjmorrow/react-component-library';
-import PropTypes from 'prop-types';
+import { ArgumentType, Footer, getThemeFromNewInputs, StyleConstant, ThemeContext, updateThemeInputs, useThemeContext, PopulatedAppBar } from '@nickjmorrow/react-component-library';
 import React from 'react';
 import styled from 'styled-components';
 import { FOOTER_HEIGHT } from '../constants';
+import { Assignments } from './Assignments';
+import { Chores } from './Chores';
+import { Laborers } from './Laborers';
 import './layout.css';
-import { ChoreList } from './ChoreList';
-import { AddChore } from './AddChore';
+import { SetPassword } from './SetPassword';
 
+const hues = [330, 200];
+const chosenHue = hues[Math.floor(Math.random() * hues.length)];
 
 const themeInputs: ArgumentType<typeof updateThemeInputs>[0] = {
 	typography: {
 		fontFamily: {
 			default: 'Overpass, sans-serif',
+			title: 'Patua One, sans-serif'
 		},
+	},
+	colors: {
+		core: {
+			hue: chosenHue
+		}
 	},
 	defaultShowBoxShadow: false,
 };
@@ -38,16 +39,12 @@ export const Main: React.FC = () => {
 	return (
 		<ThemeContext.Provider value={getThemeFromNewInputs(themeInputs)}>
 			<Wrapper>
-				
+				<PopulatedAppBar appName={'WeWork Scheduler'} styleVariant={2} />
 				<StyledMain spacing={theme.spacing}>
-					
-					<div style={{ backgroundColor: 'white' }}>
-						
-							
-						heyyyyy
-					</div>
-					<ChoreList />
-					<AddChore />
+					<Assignments />
+					<Chores />
+					<Laborers />
+					<SetPassword />
 				</StyledMain>
 				<Footer />
 			</Wrapper>
@@ -67,5 +64,6 @@ const Wrapper = styled.div`
 `;
 
 const StyledMain = styled('div')<{ spacing: StyleConstant<'spacing'> }>`
-	
+	width: max-content;
+	margin: 0 auto;
 `;

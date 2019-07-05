@@ -1,40 +1,43 @@
 export const INITIAL_DELAY = 100;
 
-const INCREMENTAL_DELAY = 200;
-
-const APP_BAR_APPEARS = INITIAL_DELAY;
-const APP_BAR_DELAY = 400;
-const ABOUT_APPEARS = APP_BAR_APPEARS + APP_BAR_DELAY + INCREMENTAL_DELAY;
-const EXPERIENCE_APPEARS = ABOUT_APPEARS + INCREMENTAL_DELAY;
-const WORK_APPEARS = EXPERIENCE_APPEARS + INCREMENTAL_DELAY;
-const CONTACT_APPEARS = WORK_APPEARS + INCREMENTAL_DELAY;
-const RESUME_APPEARS = CONTACT_APPEARS + INCREMENTAL_DELAY;
-const HEADLINE_APPEARS = RESUME_APPEARS + INCREMENTAL_DELAY;
-const GET_IN_TOUCH_APPEARS = HEADLINE_APPEARS + INCREMENTAL_DELAY;
-const DOWN_ARROW_ICON_APPEARS = GET_IN_TOUCH_APPEARS + INCREMENTAL_DELAY;
-const CONTACT_NAME_APPEARS = CONTACT_APPEARS + INCREMENTAL_DELAY;
-const CONTACT_EMAIL_APPEARS = CONTACT_NAME_APPEARS + INCREMENTAL_DELAY;
-const CONTACT_MESSAGE_APPEARS = CONTACT_EMAIL_APPEARS + INCREMENTAL_DELAY;
-const CONTACT_SEND_MESSAGE_APPEARS = CONTACT_MESSAGE_APPEARS + INCREMENTAL_DELAY;
-
-
-
-export const enterTimeout = {
-	appBarAppears: APP_BAR_APPEARS,
-	aboutAppears: ABOUT_APPEARS,
-	experienceAppears: EXPERIENCE_APPEARS,
-	workAppears: WORK_APPEARS,
-	contactAppears: CONTACT_APPEARS,
-	resumeAppears: RESUME_APPEARS,
-	headlineAppears: HEADLINE_APPEARS,
-	getInTouchAppears: GET_IN_TOUCH_APPEARS,
-	downArrowIconAppears: DOWN_ARROW_ICON_APPEARS,
-	contactNameAppears: CONTACT_NAME_APPEARS,
-	contactEmailAppears: CONTACT_EMAIL_APPEARS,
-	contactMessageAppears: CONTACT_MESSAGE_APPEARS,
-	contactSendMessageAppears: CONTACT_SEND_MESSAGE_APPEARS,
-};
-
 export const FOOTER_HEIGHT = '42px';
 
-export const NUM_FEATURED_PROJECTS = 3;
+export const dayOfWeekOptions = [
+	{
+		value: 1,
+		label: 'Monday',
+	},
+	{
+		value: 2,
+		label: 'Tuesday',
+	},
+	{
+		value: 3,
+		label: 'Wednesday',
+	},
+	{
+		value: 4,
+		label: 'Thursday',
+	},
+	{
+		value: 5,
+		label: 'Friday',
+	},
+];
+
+export const monthMapping = {
+	0: 'January',
+	1: 'February',
+	2: 'March',
+	3: 'April',
+	4: 'May',
+	5: 'June',
+	6: 'July',
+	7: 'August',
+	8: 'September',
+	9: 'October',
+	10: 'November',
+	11: 'December'
+};
+
+export const WEWORK_PASSWORD = 'WEWORK_PASSWORD';

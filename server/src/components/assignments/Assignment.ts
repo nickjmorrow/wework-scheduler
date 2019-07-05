@@ -17,4 +17,19 @@ export class Assignment {
 
 	@Column({ name: 'assignment_date' })
 	public assignmentDate!: Date;
+
+	public constructor(assignmentInput?: AssignmentInput) {
+		if (assignmentInput) {
+			const { laborer, chore, assignmentDate } = assignmentInput;
+			this.laborer = laborer;
+			this.chore = chore;
+			this.assignmentDate = new Date(assignmentDate);
+		}
+	}
+}
+
+interface AssignmentInput {
+	laborer: Laborer;
+	chore: Chore;
+	assignmentDate: Date;
 }

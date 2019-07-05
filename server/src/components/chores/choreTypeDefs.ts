@@ -3,6 +3,7 @@ export const choreTypeDefs = `
         choreId: Int!
         name: String!
 		description: String!
+		dayOfWeekId: Int!
 		assignments: [Assignment]!
         dateDeleted: String
     }

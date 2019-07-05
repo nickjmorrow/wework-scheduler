@@ -4,6 +4,7 @@ import Main from '../components/Main';
 import SEO from '../components/seo';
 import { Experience, Project, Setting, Technology, Chore } from '../types';
 import { WrapRootElement } from '../WrapRootElement';
+import { BrowserRouter } from 'react-router-dom';
 
 // export const GatsbyQuery = graphql`
 // 	{
@@ -22,7 +23,9 @@ import { WrapRootElement } from '../WrapRootElement';
 const IndexPage = () => {
 	return (
 		<WrapRootElement>
-			<Main />
+			<BrowserRouter>
+				<Main />
+			</BrowserRouter>
 			{/* <SEO /> */}
 		</WrapRootElement>
 	);

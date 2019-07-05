@@ -19,7 +19,7 @@ export class Chore {
 	public dayOfWeekId!: number;
 
 	@Column({ name: 'date_deleted' })
-	public dateDeleted!: Date;
+	public dateDeleted?: Date;
 
 	public constructor(chore?: Chore) {
 		if (chore) {

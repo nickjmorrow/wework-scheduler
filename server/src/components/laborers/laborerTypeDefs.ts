@@ -9,5 +9,11 @@ export const laborerTypeDefs = `
 
     type Query {
         laborers: [Laborer]!
-    }
+	}
+	
+	type Mutation {
+		addLaborer(name: String!, email: String!): Laborer!
+		removeLaborer(laborerId: Int!): Int!
+		updateLaborer(laborerId: Int!, name: String!, email: String!): Laborer!
+	}
 `;

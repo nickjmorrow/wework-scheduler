@@ -5,7 +5,7 @@ import { Chore as ChoreType } from '../types';
 import { Query } from 'react-apollo';
 import { AddChore } from './AddChore';
 import { Chore } from './Chore';
-import { Typography } from '@nickjmorrow/react-component-library';
+import { Typography, useThemeContext } from '@nickjmorrow/react-component-library';
 import { Laborer } from './Laborer';
 import { AddLaborer } from './AddLaborer';
 
@@ -20,6 +20,7 @@ export const query = gql`
 `;
 
 export const Laborers: React.FC = () => {
+	const { spacing } = useThemeContext();
 	return (
 		<Query query={query}>
 			{({ loading, error, data, refetch }) => {
@@ -27,7 +28,9 @@ export const Laborers: React.FC = () => {
 				if (!data) return null;
 				return (
 					<div style={{ margin: '256px auto', width: 'max-content' }}>
-						<Typography styleVariant={1}>Laborers</Typography>
+						<Typography styleVariant={1} style={{ marginBottom: spacing.ss16 }}>
+							Laborers
+						</Typography>
 						<div style={{ marginBottom: '32px' }}>
 							{data.laborers
 								.sort(l => l.laborerId)

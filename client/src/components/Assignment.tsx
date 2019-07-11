@@ -14,10 +14,7 @@ export const updateAssignmentMutation = gql`
 	}
 `;
 
-export const Assignment: React.FC<{ mutate: MutationFunc; assignment: AssignmentType; laborers: Laborer[] }> = ({
-	assignment,
-	laborers,
-}) => {
+export const Assignment: React.FC<{ assignment: AssignmentType; laborers: Laborer[] }> = ({ assignment, laborers }) => {
 	const formattedAssignment = formatAssignment(assignment);
 	const [isEditing, setIsEditing] = useState(false);
 	const [laborerOption, setLaborerOption] = useState({

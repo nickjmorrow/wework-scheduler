@@ -6,6 +6,8 @@ export const getFormattedDate = (date: string) => {
 export const isDateEqual = (dateOne: Date, dateTwo: Date) =>
 	dateOne.getDate() === dateTwo.getDate() && dateOne.getMonth() === dateTwo.getMonth();
 
+export const isDevMode = () => localStorage.getItem('IS_DEV_MODE') === 'true';
+
 const monthNames = [
 	'January',
 	'February',

@@ -1,6 +1,6 @@
 # Randomized Chore Scheduling for the Mastercard WeWork Team
 
-The demo can be found [here](http://nickjmorrow.github.io/maps-clustering).
+The demo can be found [here](https://fervent-saha-b4b2b7.netlify.com/).
 
 ## At a Glance
 

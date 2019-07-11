@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import * as React from 'react';
 import { Query } from 'react-apollo';
 import { Assignment as AssignmentType } from '../types';
-import { isDateEqual } from '../utilities';
+import { isDateEqual, isDevMode } from '../utilities';
 import { Assignment } from './Assignment';
 import { GenerateAssignments } from './GenerateAssignments';
 
@@ -55,7 +55,7 @@ export const Assignments: React.FC = () => {
 										<Typography>No assignments have been made.</Typography>
 									)}
 								</div>
-								<GenerateAssignments refetch={refetch} />
+								{isDevMode() && <GenerateAssignments refetch={refetch} />}
 							</>
 						)}
 					</div>

@@ -1,4 +1,4 @@
-# Hierarchical Clustering of Google Maps Locations
+# Randomized Chore Scheduling for the Mastercard WeWork Team
 
 The demo can be found [here](http://nickjmorrow.github.io/maps-clustering).
 

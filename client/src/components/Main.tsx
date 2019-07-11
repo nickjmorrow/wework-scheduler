@@ -44,7 +44,7 @@ const themeInputs: ArgumentType<typeof updateThemeInputs>[0] = {
 
 export const Main: React.FC = () => {
 	const theme = useThemeContext();
-	const horizontalMargin = theme.spacing.ss16;
+
 	return (
 		<ThemeContext.Provider value={getThemeFromNewInputs(themeInputs)}>
 			<Wrapper>

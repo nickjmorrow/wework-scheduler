@@ -43,6 +43,10 @@ export const assignmentService = {
 		});
 	},
 	updateAssignment: async (assignment: Assignment): Promise<Assignment> => {
-		return await getConnection().manager.save(assignment);
+		const currentAssignment = await getConnection().manager.findOneOrFail(Assignment, assignment);
+
+		currentAssignment.laborer = assignment.laborer;
+		currentAssignment.isEmailSent = assignment.isEmailSent;
+		return await getConnection().manager.save(currentAssignment);
 	},
 };

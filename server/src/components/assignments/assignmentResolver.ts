@@ -1,5 +1,5 @@
+import { assignmentService } from 'components/assignments';
 import { isAuthorized } from '~/utilities/isAuthorized';
-import { Assignment, assignmentService } from 'components/assignments';
 
 export const assignmentResolver = {
 	Query: {
@@ -16,11 +16,14 @@ export const assignmentResolver = {
 			await assignmentService.generateAssignments();
 			return true;
 		},
-		async updateAssignment(_: any, args: Assignment, ctx: any) {
+		async updateAssignment(_: any, args: { assignmentId: number; laborerId: number }, ctx: any) {
 			if (!isAuthorized(ctx)) {
 				return;
 			}
-			return assignmentService.updateAssignment(args);
+			const { assignmentId, laborerId } = args;
+			const currentAssignment = await assignmentService.getAssignment(assignmentId);
+			currentAssignment.laborer.laborerId = laborerId;
+			return assignmentService.updateAssignment(currentAssignment);
 		},
 	},
 };

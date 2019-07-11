@@ -5,7 +5,7 @@ import { assignmentGenerator } from './assignmentGenerator';
 
 const getAssignments = async () => {
 	const currentDate = new Date();
-	const oneWeekAgo = new Date(currentDate.setDate(currentDate.getDate() - 7));
+	const threeDaysAgo = new Date(currentDate.setDate(currentDate.getDate() - 3));
 
 	return (await getConnection().manager.find(Assignment, {
 		relations: ['laborer', 'chore'],
@@ -13,12 +13,19 @@ const getAssignments = async () => {
 		a =>
 			a.chore.dateDeleted === null &&
 			a.laborer.dateDeleted === null &&
-			new Date(a.assignmentDate).getTime() >= oneWeekAgo.getTime(),
+			new Date(a.assignmentDate).getTime() >= threeDaysAgo.getTime(),
 	);
+};
+
+const getAssignment = async (assignmentId: number) => {
+	return await getConnection().manager.findOneOrFail(Assignment, assignmentId, {
+		relations: ['laborer', 'chore'],
+	});
 };
 
 export const assignmentService = {
 	getAssignments,
+	getAssignment,
 	addAssignment: async (assignment: Assignment) => {
 		return await getConnection().manager.save(Assignment, assignment);
 	},
@@ -43,10 +50,6 @@ export const assignmentService = {
 		});
 	},
 	updateAssignment: async (assignment: Assignment): Promise<Assignment> => {
-		const currentAssignment = await getConnection().manager.findOneOrFail(Assignment, assignment);
-
-		currentAssignment.laborer = assignment.laborer;
-		currentAssignment.isEmailSent = assignment.isEmailSent;
-		return await getConnection().manager.save(currentAssignment);
+		return await getConnection().manager.save(assignment);
 	},
 };

@@ -6,7 +6,7 @@
 	"license": "MIT",
 	"author": "Nicholas Morrow <njmorrow95@gmail.com>",
 	"dependencies": {
-		"@nickjmorrow/react-component-library": "0.0.42",
+		"@nickjmorrow/react-component-library": "0.0.43",
 		"apollo-boost": "^0.4.3",
 		"apollo-cache-inmemory": "^1.6.2",
 		"apollo-client": "^2.6.3",

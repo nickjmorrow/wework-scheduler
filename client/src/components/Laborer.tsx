@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
-import { Chore as ChoreType } from '../types';
-import { Laborer as LaborerType } from '../types';
-import { Typography, CloseIconButton, EditIconButton, TextInput, Select } from '@nickjmorrow/react-component-library';
+import { CloseIconButton, EditIconButton, TextInput, Typography } from '@nickjmorrow/react-component-library';
 import gql from 'graphql-tag';
-import { MutationFunc, graphql, compose, Mutation } from 'react-apollo';
+import React, { useState } from 'react';
+import { Mutation } from 'react-apollo';
 import styled from 'styled-components';
-import { dayOfWeekOptions } from '../constants';
+import { Laborer as LaborerType } from '../types';
 
 export const removeLaborerMutation = gql`
 	mutation removeLaborer($laborerId: Int!) {
@@ -106,7 +104,7 @@ const LaborerInternal: React.FC<{ laborer: LaborerType; refetch(): void }> = ({ 
 	);
 };
 
-export const Laborer = compose(graphql(removeLaborerMutation, updateLaborerMutation))(LaborerInternal);
+export const Laborer = LaborerInternal;
 
 const ChoreInfoWrapper = styled.div`
 	display: grid;

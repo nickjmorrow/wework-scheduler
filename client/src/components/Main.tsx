@@ -17,7 +17,7 @@ import {
 } from '@nickjmorrow/react-component-library';
 import React from 'react';
 import styled from 'styled-components';
-import { FOOTER_HEIGHT } from '../constants';
+import { FOOTER_HEIGHT, GITHUB_LINK } from '../constants';
 import { Assignments } from './Assignments';
 import { Chores } from './Chores';
 import { Laborers } from './Laborers';
@@ -48,7 +48,7 @@ export const Main: React.FC = () => {
 	return (
 		<ThemeContext.Provider value={getThemeFromNewInputs(themeInputs)}>
 			<Wrapper>
-				<PopulatedAppBar appName={'WeWork Scheduler'} styleVariant={2} />
+				<PopulatedAppBar appName={'WeWork Scheduler'} styleVariant={2} githubLink={GITHUB_LINK} />
 				<StyledMain spacing={theme.spacing}>
 					<Assignments />
 					<Chores />

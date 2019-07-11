@@ -37,7 +37,9 @@ export const monthMapping = {
 	8: 'September',
 	9: 'October',
 	10: 'November',
-	11: 'December'
+	11: 'December',
 };
 
 export const WEWORK_PASSWORD = 'WEWORK_PASSWORD';
+
+export const GITHUB_LINK = 'https://github.com/nickjmorrow/wework-scheduler';

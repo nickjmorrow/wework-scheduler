@@ -5,8 +5,7 @@ import { graphql, MutationFunc } from 'react-apollo';
 import styled from 'styled-components';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { css } from 'glamor'
-
+import { css } from 'glamor';
 
 export const generateAssignmentsMutation = gql`
 	mutation generateAssignments {
@@ -29,7 +28,7 @@ const getPrettyHues = () => {
 const GenerateAssignmentsInternal: React.FC<{ refetch(): void; mutate: MutationFunc }> = ({ refetch, mutate }) => {
 	const [isLoading, setIsLoading] = useState(false);
 	const notify = () => toast('Assignments have been generated if not already created for the next few weeks.');
-	const [currentPrettyHues, setPrettyHues] = useState(getPrettyHues());
+	const [currentPrettyHues] = useState(getPrettyHues());
 	const { typography } = useThemeContext();
 	const handleClick = async () => {
 		setIsLoading(true);
@@ -39,13 +38,13 @@ const GenerateAssignmentsInternal: React.FC<{ refetch(): void; mutate: MutationF
 		notify();
 	};
 	const { first, second } = currentPrettyHues;
-	
+
 	return (
 		<>
 			<StyledButton first={first} second={second} isLoading={isLoading} useMargin={false} onClick={handleClick}>
 				Generate
 			</StyledButton>
-			<ToastContainer toastClassName={css({fontSize: '16px', fontFamily: typography.fontFamily.default})} />
+			<ToastContainer toastClassName={css({ fontSize: '16px', fontFamily: typography.fontFamily.default })} />
 		</>
 	);
 };

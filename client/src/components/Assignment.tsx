@@ -1,10 +1,10 @@
-import { EditIconButton, Select, Typography } from '@nickjmorrow/react-component-library';
+import { EditIconButton, IOption, Select, Typography } from '@nickjmorrow/react-component-library';
 import gql from 'graphql-tag';
 import React, { useState } from 'react';
-import { Mutation, MutationFunc } from 'react-apollo';
-import { dayOfWeekOptions, monthMapping } from '../constants';
-import { Assignment as AssignmentType, Laborer } from '../types';
+import { Mutation } from 'react-apollo';
 import { toast } from 'react-toastify';
+import { dayOfWeekOptions, monthMapping, NAME } from '../constants';
+import { Assignment as AssignmentType, Laborer } from '../types';
 
 export const updateAssignmentMutation = gql`
 	mutation updateAssignment($assignmentId: Int!, $laborerId: Int!) {
@@ -17,6 +17,7 @@ export const updateAssignmentMutation = gql`
 export const Assignment: React.FC<{ assignment: AssignmentType; laborers: Laborer[] }> = ({ assignment, laborers }) => {
 	const formattedAssignment = formatAssignment(assignment);
 	const [isEditing, setIsEditing] = useState(false);
+	const [hasMadeChange, setHasMadeChange] = useState(false);
 	const [laborerOption, setLaborerOption] = useState({
 		value: assignment.laborer.laborerId,
 		label: assignment.laborer.name,
@@ -27,14 +28,32 @@ export const Assignment: React.FC<{ assignment: AssignmentType; laborers: Labore
 		label: l.name,
 	}));
 
+	const handleLaborerOptionChange = (o: IOption) => {
+		setHasMadeChange(true);
+		setLaborerOption(o);
+	};
+
 	const assignmentUpdated = () => toast('Assignment updated.');
 
 	const colorVariant = new Date(assignment.assignmentDate) < new Date() ? 'secondaryDark' : 'primaryDark';
+
+	const isRelevantToUser = localStorage.getItem(NAME) === assignment.laborer.name;
+	const relevanceStyle: React.CSSProperties = {
+		fontWeight: isRelevantToUser ? 700 : 400,
+	};
 	return (
 		<Mutation mutation={updateAssignmentMutation}>
 			{(updateAssignment, { data }) => {
 				const toggleIsEditing = async () => {
-					if (isEditing) {
+					if (!hasMadeChange) {
+						setIsEditing(currentIsEditing => !currentIsEditing);
+						return;
+					}
+					const beforeUpdate = isEditing;
+
+					// want to immediately update UI and not wait for response
+					setIsEditing(currentIsEditing => !currentIsEditing);
+					if (beforeUpdate) {
 						await updateAssignment({
 							variables: {
 								assignmentId: assignment.assignmentId,
@@ -42,9 +61,8 @@ export const Assignment: React.FC<{ assignment: AssignmentType; laborers: Labore
 							},
 						});
 						assignmentUpdated();
+						setHasMadeChange(false);
 					}
-
-					setIsEditing(currentIsEditing => !currentIsEditing);
 				};
 				return (
 					<div
@@ -58,7 +76,9 @@ export const Assignment: React.FC<{ assignment: AssignmentType; laborers: Labore
 						}}
 					>
 						<div style={{ minWidth: '250px', display: 'flex', alignItems: 'center' }}>
-							<Typography colorVariant={colorVariant}>{formattedAssignment.chore.name}</Typography>
+							<Typography colorVariant={colorVariant} style={relevanceStyle}>
+								{formattedAssignment.chore.name}
+							</Typography>
 						</div>
 						<div style={{ minWidth: '250px', display: 'flex', alignItems: 'center' }}>
 							{isEditing ? (
@@ -66,11 +86,13 @@ export const Assignment: React.FC<{ assignment: AssignmentType; laborers: Labore
 									numVisibleOptions={3.5}
 									options={laborerOptions}
 									currentOption={laborerOption}
-									onChange={o => setLaborerOption(o)}
+									onChange={o => handleLaborerOptionChange(o)}
 									style={{ width: '200px' }}
 								/>
 							) : (
-								<Typography colorVariant={colorVariant}>{laborerOption.label}</Typography>
+								<Typography colorVariant={colorVariant} style={relevanceStyle}>
+									{laborerOption.label}
+								</Typography>
 							)}
 						</div>
 						<div
@@ -83,7 +105,9 @@ export const Assignment: React.FC<{ assignment: AssignmentType; laborers: Labore
 								alignItems: 'center',
 							}}
 						>
-							<Typography colorVariant={colorVariant}>{getPrettyDate(assignment)}</Typography>
+							<Typography colorVariant={colorVariant} style={relevanceStyle}>
+								{getPrettyDate(assignment)}
+							</Typography>
 						</div>
 						<div style={{ display: 'flex', alignItems: 'center' }}>
 							<EditIconButton onClick={toggleIsEditing} sizeVariant={2} styleVariant={2} />

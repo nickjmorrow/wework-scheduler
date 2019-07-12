@@ -8,10 +8,11 @@ export const mailTodaysAssignments = async () => {
 
 const mailAssignment = (assignment: Assignment) => {
 	console.log(`Sending today's assignment to ${assignment.laborer.name}`);
+	const email = process.env.NODE_ENV === 'development' ? process.env.TESTING_EMAIL : assignment.laborer.email;
 	mailTransporter.sendMail(
 		{
 			from: process.env.GMAIL_USER,
-			to: assignment.laborer.email,
+			to: email,
 			subject: assignment.chore.name,
 			text: assignment.chore.description,
 		},

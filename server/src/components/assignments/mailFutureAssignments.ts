@@ -45,10 +45,11 @@ export const mailFutureAssignments = async () => {
 
 const sendMailToLaborer = (laborer: Laborer, dateRange: string) => {
 	console.log(`Sending future assignment to ${laborer.name}`);
+	const email = process.env.NODE_ENV === 'development' ? process.env.TESTING_EMAIL : laborer.email;
 	mailTransporter.sendMail(
 		{
 			from: process.env.GMAIL_USER,
-			to: laborer.email,
+			to: email,
 			subject: `WeWork Chores for ${dateRange}`,
 			text: `Chores have been generated for ${dateRange}, please see https://fervent-saha-b4b2b7.netlify.com/`,
 		},

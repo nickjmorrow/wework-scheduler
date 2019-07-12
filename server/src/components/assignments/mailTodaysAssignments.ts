@@ -7,6 +7,7 @@ export const mailTodaysAssignments = async () => {
 };
 
 const mailAssignment = (assignment: Assignment) => {
+	console.log(`Sending today's assignment to ${assignment.laborer.name}`);
 	mailTransporter.sendMail(
 		{
 			from: process.env.GMAIL_USER,

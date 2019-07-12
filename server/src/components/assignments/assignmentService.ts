@@ -40,7 +40,8 @@ export const assignmentService = {
 		return assignments.filter(a => isDateEqual(a.assignmentDate, today) && !a.isEmailSent);
 	},
 	getOrCreateFutureAssignments: async (): Promise<Assignment[]> => {
-		await assignmentGenerator.generateAssignments();
+		const generatedAssignments = await assignmentGenerator.generateAssignments();
+		await Promise.all(generatedAssignments.map(a => assignmentService.addAssignment(a)));
 		const today = new Date();
 		const assignments = await getAssignments();
 

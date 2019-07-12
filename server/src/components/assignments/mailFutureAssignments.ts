@@ -24,6 +24,7 @@ export const mailFutureAssignments = async () => {
 		return;
 	}
 	const futureAssignments = await assignmentService.getOrCreateFutureAssignments();
+
 	const assignmentDates = futureAssignments.map(fa => new Date(fa.assignmentDate));
 	const minimumDate = assignmentDates.reduce((agg, cur, i, arr) => {
 		if (cur > agg) {
@@ -43,6 +44,7 @@ export const mailFutureAssignments = async () => {
 };
 
 const sendMailToLaborer = (laborer: Laborer, dateRange: string) => {
+	console.log(`Sending future assignment to ${laborer.name}`);
 	mailTransporter.sendMail(
 		{
 			from: process.env.GMAIL_USER,
@@ -54,7 +56,7 @@ const sendMailToLaborer = (laborer: Laborer, dateRange: string) => {
 			if (err) {
 				console.log(err);
 			}
-			console.log(info.response);
+			console.log(info);
 		},
 	);
 };

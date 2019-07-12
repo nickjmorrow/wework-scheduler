@@ -41,12 +41,12 @@ module.exports = {
 				url: getServerUrl(),
 			},
 		},
-		// {
-		// 	resolve: `gatsby-plugin-favicon`,
-		// 	options: {
-		// 		logo: './assets/favicon.png',
-		// 	},
-		// },
+		{
+			resolve: `gatsby-plugin-favicon`,
+			options: {
+				logo: './assets/favicon.png',
+			},
+		},
 		{
 			resolve: `gatsby-plugin-prefetch-google-fonts`,
 			options: {

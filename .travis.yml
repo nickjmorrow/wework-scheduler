@@ -8,6 +8,7 @@ cache:
 script:
     - npm run --prefix client build
     - npm run --prefix client lint
+    - npm run --prefix client test
     - npm run --prefix server build
     - npm run --prefix server lint
     - npm run --prefix server test

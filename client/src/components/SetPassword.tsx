@@ -1,10 +1,11 @@
-import { Button, Fade, TextInput, Typography } from '@nickjmorrow/react-component-library';
+import { Button, Fade, TextInput, Typography, useThemeContext } from '@nickjmorrow/react-component-library';
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { WEWORK_PASSWORD, NAME } from '../constants';
+import { NAME, WEWORK_PASSWORD } from '../constants';
 
 export const SetPassword: React.FC = () => {
+	const { spacing } = useThemeContext();
 	const [password, setPassword] = useState(localStorage.getItem(WEWORK_PASSWORD) || '');
 	const [name, setName] = useState(localStorage.getItem(NAME) || '');
 	const [isVisible, setIsVisible] = useState(false);
@@ -29,6 +30,9 @@ export const SetPassword: React.FC = () => {
 
 		setIsVisible(state => !state);
 	};
+	const handleCancel = () => {
+		setIsVisible(false);
+	};
 	return (
 		<div style={{ width: 'max-content', margin: '256px auto' }}>
 			<Fade
@@ -38,6 +42,7 @@ export const SetPassword: React.FC = () => {
 				styleKeys={['height']}
 				mounted={{ height: '130px', marginBottom: '32px' }}
 				unmounted={{ height: '0px' }}
+				transitionVariant={'medium'}
 				style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center' }}
 			>
 				<div style={{ display: 'grid', gridAutoFlow: 'row', gridRowGap: '16px' }}>
@@ -50,9 +55,17 @@ export const SetPassword: React.FC = () => {
 				</div>
 				<Typography style={{ margin: '48px 0' }}>Updates will only persist with the right password.</Typography>
 			</Fade>
-			<Button style={{ margin: '0 auto' }} styleVariant={2} useMargin={false} onClick={handleClick}>
-				{isVisible ? 'Save Settings' : 'Update Settings'}
-			</Button>
+			<div style={{ display: 'grid', gridAutoFlow: 'row', gridRowGap: spacing.ss6, }}>
+				<Button style={{ margin: '0 auto' }} styleVariant={2} useMargin={false} onClick={handleClick}>
+					{isVisible ? 'Save Settings' : 'Update Settings'}
+				</Button>
+
+				<Fade in={isVisible} appear={true} transitionVariant={'fast'} style={{margin: '0 auto'}}>
+					<Button styleVariant={3} colorVariant={'warning'} useMargin={false} onClick={handleCancel}>
+						Cancel
+					</Button>
+				</Fade>
+			</div>
 		</div>
 	);
 };

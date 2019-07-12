@@ -5,7 +5,7 @@ import { Chore as ChoreType } from '../types';
 import { Query } from 'react-apollo';
 import { AddChore } from './AddChore';
 import { Chore } from './Chore';
-import { Typography, useThemeContext } from '@nickjmorrow/react-component-library';
+import { Typography, useThemeContext, DelayedSlideInFade } from '@nickjmorrow/react-component-library';
 
 export const query = gql`
 	{
@@ -27,17 +27,19 @@ export const Chores: React.FC = () => {
 				if (!data) return null;
 
 				return (
-					<div style={{ margin: '256px auto' }}>
-						<Typography styleVariant={1} style={{ marginBottom: spacing.ss16 }}>
-							Chores
-						</Typography>
-						<div style={{ marginBottom: '32px' }}>
-							{data.chores.sort(byDayOfWeekId).map(c => (
-								<Chore key={c.choreId} chore={c} refetch={refetch} />
-							))}
+					<DelayedSlideInFade>
+						<div style={{ margin: '256px auto' }}>
+							<Typography styleVariant={1} style={{ marginBottom: spacing.ss16 }}>
+								Chores
+							</Typography>
+							<div style={{ marginBottom: '32px' }}>
+								{data.chores.sort(byDayOfWeekId).map(c => (
+									<Chore key={c.choreId} chore={c} refetch={refetch} />
+								))}
+							</div>
+							<AddChore refetch={refetch} />
 						</div>
-						<AddChore refetch={refetch} />
-					</div>
+					</DelayedSlideInFade>
 				);
 			}}
 		</Query>

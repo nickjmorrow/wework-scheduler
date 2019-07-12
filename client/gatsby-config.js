@@ -1,5 +1,4 @@
 var getServerUrl = require('./getServerUrl');
-const path = require('path');
 
 module.exports = {
 	siteMetadata: {

@@ -1,7 +1,8 @@
-import { Fade, Typography } from '@nickjmorrow/react-component-library';
+import { Fade, Typography, useThemeContext, SlideInFade } from '@nickjmorrow/react-component-library';
 import gql from 'graphql-tag';
 import * as React from 'react';
 import { Query } from 'react-apollo';
+import ReactLoading from 'react-loading';
 import { Assignment as AssignmentType } from '../types';
 import { isDateEqual, isDevMode } from '../utilities';
 import { Assignment } from './Assignment';
@@ -29,15 +30,30 @@ export const query = gql`
 `;
 
 export const Assignments: React.FC = () => {
+	const { colors, spacing } = useThemeContext();
+
 	return (
 		<Query query={query}>
 			{({ loading, error, data, refetch }) => {
 				return (
 					<div style={{ margin: '128px auto', width: 'max-content', minHeight: '100vh', minWidth: '738px' }}>
-						<Typography styleVariant={1} style={{ marginBottom: '64px' }}>
-							Assignments
-						</Typography>
-						{!loading && (
+						<SlideInFade>
+							<Typography styleVariant={1} style={{ marginBottom: '64px', display: 'block' }}>
+								Assignments
+							</Typography>
+						</SlideInFade>
+						{loading ? (
+							<div style={{ margin: `${spacing.ss32} auto`, width: 'min-content' }}>
+								<Fade in={loading} appear={true} enterTimeout={300} transitionVariant={'slow'}>
+									<ReactLoading
+										type={'spinningBubbles'}
+										color={colors.core.cs5}
+										height={100}
+										width={100}
+									/>
+								</Fade>
+							</div>
+						) : (
 							<>
 								<div style={{ marginBottom: '32px' }}>
 									{data.assignments.length > 0 ? (

@@ -1,4 +1,4 @@
-# Randomized Chore Scheduling for the Mastercard WeWork Team
+# Randomized Chore Scheduling for the Mastercard WeWork
 
 The demo can be found [here](https://fervent-saha-b4b2b7.netlify.com/).
 

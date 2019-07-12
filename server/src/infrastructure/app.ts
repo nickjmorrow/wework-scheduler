@@ -19,8 +19,6 @@ app.use('/graphiql', () => {
 	});
 });
 
-// TODO: look into merging schemas
-
 app.use('/', bodyParser.json(), (req, res, next) =>
 	graphqlExpress({ schema: mergedSchema, context: req })(req, res, next),
 );

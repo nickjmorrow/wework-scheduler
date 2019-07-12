@@ -1,5 +1,7 @@
 # Randomized Chore Scheduling for the Mastercard WeWork
 
+[![Build Status](https://travis-ci.org/nickjmorrow/wework-scheduler.svg?branch=master)](https://travis-ci.org/nickjmorrow/wework-scheduler)
+
 The demo can be found [here](https://fervent-saha-b4b2b7.netlify.com/).
 
 ## At a Glance

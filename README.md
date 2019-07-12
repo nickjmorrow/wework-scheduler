@@ -2,6 +2,9 @@
 
 [![Build Status](https://travis-ci.org/nickjmorrow/wework-scheduler.svg?branch=master)](https://travis-ci.org/nickjmorrow/wework-scheduler)
 
+[![Purple](https://badgen.net/badge/color/purple/purple)](purple)
+[https://badgen.net/badge/icon/postgresql?icon=postgresql&label]
+
 The demo can be found [here](https://fervent-saha-b4b2b7.netlify.com/).
 
 ## At a Glance

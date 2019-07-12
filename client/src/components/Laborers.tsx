@@ -23,8 +23,8 @@ export const Laborers: React.FC = () => {
 				if (loading) return null;
 				if (!data) return null;
 				return (
-					<DelayedSlideInFade>
-						<div style={{ margin: '256px auto', width: 'max-content' }}>
+					<DelayedSlideInFade style={{ margin: '256px auto', width: 'max-content' }}>
+						<div>
 							<Typography styleVariant={1} style={{ marginBottom: spacing.ss16 }}>
 								Laborers
 							</Typography>

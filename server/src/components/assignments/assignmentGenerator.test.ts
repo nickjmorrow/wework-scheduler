@@ -84,6 +84,7 @@ describe('assignment generator', () => {
 		assignmentService.getAssignments = () => {
 			return Promise.resolve(assignments);
 		};
+		assignmentGenerator.getWeeksRange = async () => Promise.resolve(4);
 
 		Math.random = () => 0;
 		sinon.useFakeTimers(new Date(2019, 6, 22).getTime());

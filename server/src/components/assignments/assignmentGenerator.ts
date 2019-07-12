@@ -1,9 +1,11 @@
-import { laborerService, Assignment, Laborer } from 'components';
-import { choreService } from '../chores';
-import { assignmentService } from './assignmentService';
+import { Assignment, Laborer, laborerService } from 'components';
 import { NUM_DAYS_IN_WEEK, WEEKS_RANGE } from '~/constants';
 import { isDateEqual } from '~/utilities/isDateEqual';
+import { choreService } from '../chores';
 import { settingsProvider } from '../settings';
+import { assignmentService } from './assignmentService';
+
+export const getWeeksRange = async () => parseInt((await settingsProvider.getDatabaseSetting(WEEKS_RANGE)).value, 10);
 
 export const assignmentGenerator = {
 	generateAssignments: async () => {
@@ -44,12 +46,11 @@ export const assignmentGenerator = {
 
 		return newAssignments;
 	},
+	getWeeksRange,
 };
-
-const getWeeksRange = async () => parseInt((await settingsProvider.getDatabaseSetting(WEEKS_RANGE)).value, 10);
 
 const getEndDate = async () => {
 	const endDate = new Date();
-	endDate.setDate(new Date().getDate() + NUM_DAYS_IN_WEEK * (await getWeeksRange()));
+	endDate.setDate(new Date().getDate() + NUM_DAYS_IN_WEEK * (await assignmentGenerator.getWeeksRange()));
 	return endDate;
 };

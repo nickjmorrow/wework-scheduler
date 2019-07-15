@@ -1,5 +1,5 @@
-import { assignmentService, Assignment } from '~/components/assignments';
-import { laborerService, Laborer } from '~/components/laborers';
+import { assignmentService } from '~/components/assignments';
+import { Laborer, laborerService } from '~/components/laborers';
 import { MIN_DAYS_UNTIL_RESEND_EMAIL, monthMapping } from '~/constants';
 import { mailTransporter } from '~/infrastructure/mailTransporter';
 import { settingsProvider } from '../settings';

@@ -12,8 +12,8 @@ export const SetPassword: React.FC = () => {
 	const notify = () => toast('Password saved to localStorage. Refresh to view changes.');
 
 	const handleClick = () => {
-		if (password === '' && name === '') {
-			setIsVisible(false);
+		if (!isVisible) {
+			setIsVisible(true);
 			return;
 		}
 		if (password !== '') {
@@ -28,7 +28,7 @@ export const SetPassword: React.FC = () => {
 			notify();
 		}
 
-		setIsVisible(state => !state);
+		setIsVisible(false);
 	};
 	const handleCancel = () => {
 		setIsVisible(false);
@@ -55,12 +55,12 @@ export const SetPassword: React.FC = () => {
 				</div>
 				<Typography style={{ margin: '48px 0' }}>Updates will only persist with the right password.</Typography>
 			</Fade>
-			<div style={{ display: 'grid', gridAutoFlow: 'row', gridRowGap: spacing.ss6, }}>
+			<div style={{ display: 'grid', gridAutoFlow: 'row', gridRowGap: spacing.ss6 }}>
 				<Button style={{ margin: '0 auto' }} styleVariant={2} useMargin={false} onClick={handleClick}>
 					{isVisible ? 'Save Settings' : 'Update Settings'}
 				</Button>
 
-				<Fade in={isVisible} appear={true} transitionVariant={'fast'} style={{margin: '0 auto'}}>
+				<Fade in={isVisible} appear={true} transitionVariant={'fast'} style={{ margin: '0 auto' }}>
 					<Button styleVariant={3} colorVariant={'warning'} useMargin={false} onClick={handleCancel}>
 						Cancel
 					</Button>

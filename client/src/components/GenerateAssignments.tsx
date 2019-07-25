@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
 import { Button, useThemeContext } from '@nickjmorrow/react-component-library';
 import gql from 'graphql-tag';
+import React, { useState } from 'react';
 import { graphql, MutationFunc } from 'react-apollo';
-import styled from 'styled-components';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { css } from 'glamor';
+import styled from 'styled-components';
 
 export const generateAssignmentsMutation = gql`
 	mutation generateAssignments {
@@ -44,7 +43,6 @@ const GenerateAssignmentsInternal: React.FC<{ refetch(): void; mutate: MutationF
 			<StyledButton first={first} second={second} isLoading={isLoading} useMargin={false} onClick={handleClick}>
 				Generate
 			</StyledButton>
-			<ToastContainer toastClassName={css({ fontSize: '16px', fontFamily: typography.fontFamily.default })} />
 		</>
 	);
 };

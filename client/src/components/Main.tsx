@@ -23,6 +23,8 @@ import { Chores } from './Chores';
 import { Laborers } from './Laborers';
 import './layout.css';
 import { SetPassword } from './SetPassword';
+import { ToastContainer } from 'react-toastify';
+import { css } from 'glamor';
 
 const hues = [330, 200];
 const chosenHue = hues[Math.floor(Math.random() * hues.length)];
@@ -43,18 +45,19 @@ const themeInputs: ArgumentType<typeof updateThemeInputs>[0] = {
 };
 
 export const Main: React.FC = () => {
-	const theme = useThemeContext();
+	const { spacing, typography } = useThemeContext();
 
 	return (
 		<ThemeContext.Provider value={getThemeFromNewInputs(themeInputs)}>
 			<Wrapper>
 				<PopulatedAppBar appName={'WeWork Scheduler'} styleVariant={2} githubLink={GITHUB_LINK} />
-				<StyledMain spacing={theme.spacing}>
+				<StyledMain spacing={spacing}>
 					<Assignments />
 					<Chores />
 					<Laborers />
 					<SetPassword />
 				</StyledMain>
+				<ToastContainer toastClassName={css({ fontSize: '16px', fontFamily: typography.fontFamily.default })} />
 				<Footer />
 			</Wrapper>
 		</ThemeContext.Provider>

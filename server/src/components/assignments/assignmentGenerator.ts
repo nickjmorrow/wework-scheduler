@@ -15,10 +15,15 @@ export const assignmentGenerator = {
 		const endDate = await getEndDate();
 
 		const newAssignments: Assignment[] = [];
-		let laborerPool: Laborer[] = [...allLaborers];
+		const lastLaborerId = assignments[assignments.length - 1].laborer.laborerId;
+		let laborerPool = allLaborers.filter(l => l.laborerId > lastLaborerId);
 
-		for (let currentDate = new Date(); currentDate <= endDate; currentDate.setDate(currentDate.getDate() + 1)) {
-			const currentDayOfWeek = currentDate.getDay();
+		for (
+			let currentDate = new Date();
+			currentDate <= endDate;
+			currentDate.setUTCDate(currentDate.getUTCDate() + 1)
+		) {
+			const currentDayOfWeek = currentDate.getUTCDay();
 			if (currentDayOfWeek === 0 || currentDayOfWeek === 6) {
 				continue;
 			}
@@ -32,12 +37,7 @@ export const assignmentGenerator = {
 				if (laborerPool.length === 0) {
 					laborerPool = [...allLaborers];
 				}
-				const randomIndex = Math.floor(Math.random() * laborerPool.length);
-				const randomLaborer = laborerPool[randomIndex];
-				laborerPool = [
-					...laborerPool.slice(0, randomIndex),
-					...laborerPool.slice(randomIndex + 1, laborerPool.length),
-				];
+				const randomLaborer = laborerPool.shift()!;
 
 				const assignment = new Assignment({ laborer: randomLaborer, chore: uc, assignmentDate: currentDate });
 				newAssignments.push(assignment);
@@ -51,6 +51,6 @@ export const assignmentGenerator = {
 
 const getEndDate = async () => {
 	const endDate = new Date();
-	endDate.setDate(new Date().getDate() + NUM_DAYS_IN_WEEK * (await assignmentGenerator.getWeeksRange()));
+	endDate.setUTCDate(new Date().getUTCDate() + NUM_DAYS_IN_WEEK * (await assignmentGenerator.getWeeksRange()));
 	return endDate;
 };

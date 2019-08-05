@@ -45,7 +45,7 @@ export const mailFutureAssignments = async () => {
 
 const sendMailToLaborer = (laborer: Laborer, dateRange: string) => {
 	console.log(`Sending future assignment to ${laborer.name}`);
-	const email = process.env.NODE_ENV === 'development' ? process.env.TESTING_EMAIL : laborer.email;
+	const email = process.env.NODE_ENV === 'production' ? laborer.email : process.env.TESTING_EMAIL;
 	mailTransporter.sendMail(
 		{
 			from: process.env.GMAIL_USER,

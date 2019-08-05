@@ -26,27 +26,22 @@ const makeChore = (choreId: number, dayOfWeek: DayOfWeek) => ({
 });
 
 const expectedAssignments = [
-	{ choreId: 2, laborerId: 1, assignmentMonth: 6, assignmentDate: 24 },
-	{ choreId: 1, laborerId: 2, assignmentMonth: 6, assignmentDate: 29 },
-	{ choreId: 2, laborerId: 3, assignmentMonth: 6, assignmentDate: 31 },
-	{ choreId: 3, laborerId: 4, assignmentMonth: 6, assignmentDate: 31 },
-	{ choreId: 4, laborerId: 5, assignmentMonth: 7, assignmentDate: 2 },
-	{ choreId: 1, laborerId: 6, assignmentMonth: 7, assignmentDate: 5 },
-	{ choreId: 2, laborerId: 7, assignmentMonth: 7, assignmentDate: 7 },
-	{ choreId: 3, laborerId: 1, assignmentMonth: 7, assignmentDate: 7 },
-	{ choreId: 4, laborerId: 2, assignmentMonth: 7, assignmentDate: 9 },
-	{ choreId: 1, laborerId: 3, assignmentMonth: 7, assignmentDate: 12 },
-	{ choreId: 2, laborerId: 4, assignmentMonth: 7, assignmentDate: 14 },
-	{ choreId: 3, laborerId: 5, assignmentMonth: 7, assignmentDate: 14 },
-	{ choreId: 4, laborerId: 6, assignmentMonth: 7, assignmentDate: 16 },
-	{ choreId: 1, laborerId: 7, assignmentMonth: 7, assignmentDate: 19 },
+	{ choreId: 2, laborerId: 4, assignmentMonth: 6, assignmentDate: 24 },
+	{ choreId: 1, laborerId: 5, assignmentMonth: 6, assignmentDate: 29 },
+	{ choreId: 2, laborerId: 6, assignmentMonth: 6, assignmentDate: 31 },
+	{ choreId: 3, laborerId: 7, assignmentMonth: 7, assignmentDate: 2 },
+	{ choreId: 1, laborerId: 1, assignmentMonth: 7, assignmentDate: 5 },
+	{ choreId: 2, laborerId: 2, assignmentMonth: 7, assignmentDate: 7 },
+	{ choreId: 3, laborerId: 3, assignmentMonth: 7, assignmentDate: 9 },
+	{ choreId: 1, laborerId: 4, assignmentMonth: 7, assignmentDate: 12 },
+	{ choreId: 2, laborerId: 5, assignmentMonth: 7, assignmentDate: 14 },
+	{ choreId: 3, laborerId: 6, assignmentMonth: 7, assignmentDate: 16 },
 ];
 
 const chores: Chore[] = [
 	{ choreId: 1, dayOfWeek: DayOfWeek.Monday },
 	{ choreId: 2, dayOfWeek: DayOfWeek.Wednesday },
-	{ choreId: 3, dayOfWeek: DayOfWeek.Wednesday },
-	{ choreId: 4, dayOfWeek: DayOfWeek.Friday },
+	{ choreId: 3, dayOfWeek: DayOfWeek.Friday },
 ].map(c => makeChore(c.choreId, c.dayOfWeek));
 
 const assignments: Assignment[] = [
@@ -59,15 +54,8 @@ const assignments: Assignment[] = [
 	},
 	{
 		assignmentId: 2,
-		laborer: laborers.find(l => l.laborerId === 2)!,
-		chore: chores.find(c => c.choreId === 3)!,
-		isEmailSent: false,
-		assignmentDate: new Date(2019, 6, 24),
-	},
-	{
-		assignmentId: 3,
 		laborer: laborers.find(l => l.laborerId === 3)!,
-		chore: chores.find(c => c.choreId === 4)!,
+		chore: chores.find(c => c.choreId === 3)!,
 		isEmailSent: false,
 		assignmentDate: new Date(2019, 6, 26),
 	},
@@ -86,10 +74,11 @@ describe('assignment generator', () => {
 		};
 		assignmentGenerator.getWeeksRange = async () => Promise.resolve(4);
 
-		Math.random = () => 0;
-		sinon.useFakeTimers(new Date(2019, 6, 22).getTime());
+		sinon.useFakeTimers(new Date(2019, 6, 21).getTime());
+
 		const generatedAssignments = await assignmentGenerator.generateAssignments();
 
+		console.log(formatAssignments(generatedAssignments));
 		expect(formatAssignments(generatedAssignments)).toEqual(expectedAssignments);
 	});
 });

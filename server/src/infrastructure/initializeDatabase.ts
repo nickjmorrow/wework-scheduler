@@ -16,7 +16,7 @@ export const initializeDatabase = `
 	CREATE SCHEMA cs;
 
 	CREATE TABLE cs.days_of_week (
-		day_of_week_id INT NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY
+		day_of_week_id SERIAL PRIMARY KEY
 		, name VARCHAR(255) NOT NULL
 	);
 	
@@ -31,7 +31,7 @@ export const initializeDatabase = `
 		, ('Saturday');
 
 	CREATE TABLE cs.chores (
-		chore_id INT NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY
+		chore_id SERIAL PRIMARY KEY
 		, name VARCHAR(255) NOT NULL
 		, description VARCHAR(255) NOT NULL
 		, day_of_week_id INT NOT NULL REFERENCES cs.days_of_week(day_of_week_id)
@@ -47,7 +47,7 @@ export const initializeDatabase = `
 		, ('Clean out fridge', 'Clean out fridge desc', 6);
 
 	CREATE TABLE cs.laborers (
-		laborer_id INT NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY
+		laborer_id SERIAL PRIMARY KEY
 		, name VARCHAR(255) NOT NULL
 		, email VARCHAR(255) NOT NULL
 		, date_deleted DATE NULL
@@ -60,14 +60,18 @@ export const initializeDatabase = `
 		, ('Test 3', 'test3@gmail.com');
 
 	CREATE TABLE cs.assignments (
-		assignment_id INT NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY
+		assignment_id SERIAL PRIMARY KEY
 		, chore_id INT NOT NULL REFERENCES cs.chores(chore_id)
 		, laborer_id INT NOT NULL REFERENCES cs.laborers(laborer_id)
 		, assignment_date DATE NOT NULL
+		, is_email_sent BOOLEAN NOT NULL
 	);
 
 	CREATE TABLE cs.settings (
 		setting_id VARCHAR(100) NOT NULL PRIMARY KEY
 		, value VARCHAR(255) NOT NULL
 	);
+
+	INSERT INTO cs.settings (setting_id, value)
+	SELECT 'WEEKS_RANGE', '5'
 `;

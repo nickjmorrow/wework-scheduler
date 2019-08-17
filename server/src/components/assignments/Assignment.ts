@@ -27,6 +27,7 @@ export class Assignment {
 			this.laborer = laborer;
 			this.chore = chore;
 			this.assignmentDate = new Date(assignmentDate);
+			this.isEmailSent = false;
 		}
 	}
 }

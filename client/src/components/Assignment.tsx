@@ -97,7 +97,7 @@ export const Assignment: React.FC<{ assignment: AssignmentType; laborers: Labore
 						</div>
 						<div
 							style={{
-								width: '170px',
+								width: '190px',
 								textAlign: 'right',
 								display: 'flex',
 								justifyContent: 'flex-end',

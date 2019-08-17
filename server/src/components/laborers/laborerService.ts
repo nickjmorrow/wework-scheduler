@@ -5,7 +5,9 @@ export const laborerService = {
 	getLaborers: async () => {
 		return (await getConnection().manager.find(Laborer, {
 			relations: ['assignments'],
-		})).filter(l => l.dateDeleted === null);
+		}))
+			.filter(l => l.dateDeleted === null)
+			.sort((a, b) => (a.laborerId < b.laborerId ? -1 : 1));
 	},
 	addLaborer: async (laborer: Laborer) => {
 		return await getConnection().manager.save(Laborer, laborer);

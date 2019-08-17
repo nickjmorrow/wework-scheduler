@@ -13,10 +13,16 @@ export const assignmentGenerator = {
 		const chores = await choreService.getChores();
 		const assignments = await assignmentService.getAssignments();
 		const endDate = await getEndDate();
-
+		console.log(allLaborers);
 		const newAssignments: Assignment[] = [];
-		const lastLaborerId = assignments[assignments.length - 1].laborer.laborerId;
-		let laborerPool = allLaborers.filter(l => l.laborerId > lastLaborerId);
+		let laborerPool: Laborer[] = [];
+
+		if (assignments.length === 0) {
+			laborerPool = [...allLaborers];
+		} else {
+			const lastLaborerId = assignments[assignments.length - 1].laborer.laborerId;
+			laborerPool = [...allLaborers.filter(l => l.laborerId > lastLaborerId)];
+		}
 
 		for (
 			let currentDate = new Date();
@@ -44,6 +50,7 @@ export const assignmentGenerator = {
 			});
 		}
 
+		// console.log(newAssignments);
 		return newAssignments;
 	},
 	getWeeksRange,

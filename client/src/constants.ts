@@ -3,28 +3,28 @@ export const INITIAL_DELAY = 100;
 export const FOOTER_HEIGHT = '42px';
 
 export const dayOfWeekOptions = [
-	{ value: 1, label: 'Sunday' },
+	{ value: 0, label: 'Sunday' },
 	{
-		value: 2,
+		value: 1,
 		label: 'Monday',
 	},
 	{
-		value: 3,
+		value: 2,
 		label: 'Tuesday',
 	},
 	{
-		value: 4,
+		value: 3,
 		label: 'Wednesday',
 	},
 	{
-		value: 5,
+		value: 4,
 		label: 'Thursday',
 	},
 	{
-		value: 6,
+		value: 5,
 		label: 'Friday',
 	},
-	{ value: 7, label: 'Saturday' },
+	{ value: 6, label: 'Saturday' },
 ];
 
 export const monthMapping = {

@@ -124,9 +124,17 @@ const formatAssignment = (assignment: AssignmentType) => {
 	return assignment;
 };
 
+const dayMapping = {
+	1: 'Monday',
+	2: 'Tuesday',
+	3: 'Wednesday',
+	4: 'Thursday',
+	5: 'Friday',
+};
+
 const getPrettyDate = (assignment: AssignmentType) => {
 	const { formattedDate } = assignment;
 	const monthName = monthMapping[formattedDate.getUTCMonth()];
-	const dayOfWeek = dayOfWeekOptions.find(o => o.value === formattedDate.getUTCDay()).label;
+	const dayOfWeek = dayMapping[formattedDate.getUTCDay()];
 	return `${dayOfWeek}, ${monthName} ${formattedDate.getUTCDate()}`;
 };

@@ -16,7 +16,7 @@ export const initializeDatabase = `
 	CREATE SCHEMA cs;
 
 	CREATE TABLE cs.days_of_week (
-		day_of_week_id SERIAL PRIMARY KEY
+		day_of_week_id INT NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY
 		, name VARCHAR(255) NOT NULL
 	);
 	
@@ -31,7 +31,7 @@ export const initializeDatabase = `
 		, ('Saturday');
 
 	CREATE TABLE cs.chores (
-		chore_id SERIAL PRIMARY KEY
+		chore_id INT NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY
 		, name VARCHAR(255) NOT NULL
 		, description VARCHAR(255) NOT NULL
 		, day_of_week_id INT NOT NULL REFERENCES cs.days_of_week(day_of_week_id)
@@ -47,7 +47,7 @@ export const initializeDatabase = `
 		, ('Clean out fridge', 'Clean out fridge desc', 6);
 
 	CREATE TABLE cs.laborers (
-		laborer_id SERIAL PRIMARY KEY
+		laborer_id INT NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY
 		, name VARCHAR(255) NOT NULL
 		, email VARCHAR(255) NOT NULL
 		, date_deleted DATE NULL
@@ -57,10 +57,16 @@ export const initializeDatabase = `
 	VALUES
 		('Test 1', 'test1@gmail.com')
 		, ('Test 2', 'test2@gmail.com')
-		, ('Test 3', 'test3@gmail.com');
+		, ('Test 3', 'test3@gmail.com')
+		, ('Test 4', 'test2@gmail.com')
+		, ('Test 5', 'test3@gmail.com')
+		, ('Test 6', 'test2@gmail.com')
+		, ('Test 7', 'test3@gmail.com')
+		, ('Test 8', 'test2@gmail.com')
+		, ('Test 9', 'test3@gmail.com');
 
 	CREATE TABLE cs.assignments (
-		assignment_id SERIAL PRIMARY KEY
+		assignment_id INT NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY
 		, chore_id INT NOT NULL REFERENCES cs.chores(chore_id)
 		, laborer_id INT NOT NULL REFERENCES cs.laborers(laborer_id)
 		, assignment_date DATE NOT NULL

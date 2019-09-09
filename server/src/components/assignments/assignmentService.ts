@@ -31,7 +31,8 @@ export const assignmentService = {
 	},
 	generateAssignments: async () => {
 		const newAssignments = await assignmentGenerator.generateAssignments();
-		await getConnection().manager.save(Assignment, newAssignments);
+		console.log(newAssignments);
+		await getConnection().manager.insert(Assignment, newAssignments);
 		return true;
 	},
 	getTodaysUnsentAssignments: async (): Promise<Assignment[]> => {

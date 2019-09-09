@@ -26,7 +26,7 @@ export const Laborers: React.FC = () => {
 					<DelayedSlideInFade style={{ margin: '256px auto', width: 'max-content' }}>
 						<div>
 							<Typography styleVariant={1} style={{ marginBottom: spacing.ss16 }}>
-								Laborers
+								Employees
 							</Typography>
 							<div style={{ marginBottom: '32px' }}>
 								{data.laborers

@@ -26,16 +26,18 @@ const makeChore = (choreId: number, dayOfWeek: DayOfWeek) => ({
 });
 
 const expectedAssignments = [
-	{ choreId: 2, laborerId: 4, assignmentMonth: 6, assignmentDate: 24 },
-	{ choreId: 1, laborerId: 5, assignmentMonth: 6, assignmentDate: 29 },
-	{ choreId: 2, laborerId: 6, assignmentMonth: 6, assignmentDate: 31 },
-	{ choreId: 3, laborerId: 7, assignmentMonth: 7, assignmentDate: 2 },
-	{ choreId: 1, laborerId: 1, assignmentMonth: 7, assignmentDate: 5 },
-	{ choreId: 2, laborerId: 2, assignmentMonth: 7, assignmentDate: 7 },
-	{ choreId: 3, laborerId: 3, assignmentMonth: 7, assignmentDate: 9 },
-	{ choreId: 1, laborerId: 4, assignmentMonth: 7, assignmentDate: 12 },
-	{ choreId: 2, laborerId: 5, assignmentMonth: 7, assignmentDate: 14 },
-	{ choreId: 3, laborerId: 6, assignmentMonth: 7, assignmentDate: 16 },
+	{ choreId: 1, laborerId: 4, assignmentMonth: 6, assignmentDate: 23 },
+	{ choreId: 2, laborerId: 5, assignmentMonth: 6, assignmentDate: 25 },
+	{ choreId: 3, laborerId: 6, assignmentMonth: 6, assignmentDate: 27 },
+	{ choreId: 1, laborerId: 7, assignmentMonth: 6, assignmentDate: 30 },
+	{ choreId: 2, laborerId: 1, assignmentMonth: 7, assignmentDate: 1 },
+	{ choreId: 3, laborerId: 2, assignmentMonth: 7, assignmentDate: 3 },
+	{ choreId: 1, laborerId: 3, assignmentMonth: 7, assignmentDate: 6 },
+	{ choreId: 2, laborerId: 4, assignmentMonth: 7, assignmentDate: 8 },
+	{ choreId: 3, laborerId: 5, assignmentMonth: 7, assignmentDate: 10 },
+	{ choreId: 1, laborerId: 6, assignmentMonth: 7, assignmentDate: 13 },
+	{ choreId: 2, laborerId: 7, assignmentMonth: 7, assignmentDate: 15 },
+	{ choreId: 3, laborerId: 1, assignmentMonth: 7, assignmentDate: 17 },
 ];
 
 const chores: Chore[] = [

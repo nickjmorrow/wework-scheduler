@@ -7,6 +7,7 @@ import { settingsProvider } from '~/components/settings';
 // Intra
 import { assignmentService } from '~/components/assignments/assignmentService';
 import { Assignment } from '~/components/assignments/Assignment';
+import { Throw } from '../core/Throw';
 
 export const getWeeksRange = async () => parseInt((await settingsProvider.getDatabaseSetting(WEEKS_RANGE)).value, 10);
 
@@ -33,8 +34,7 @@ export const assignmentGenerator = {
 			currentDate <= endDate;
 			currentDate.setUTCDate(currentDate.getUTCDate() + 1)
 		) {
-			// TODO: Correct mapping so this is no longer necessary.
-			const currentDayOfWeek = currentDate.getUTCDay() - 1;
+			const currentDayOfWeek = currentDate.getUTCDay();
 
 			if (currentDayOfWeek === DayOfWeek.Saturday || currentDayOfWeek === DayOfWeek.Sunday) {
 				// TODO: Should throw here instead of continuing.
@@ -59,6 +59,7 @@ export const assignmentGenerator = {
 				const randomLaborer = laborerPool.shift()!;
 
 				const assignment = new Assignment({ laborer: randomLaborer, chore: uc, assignmentDate: currentDate });
+
 				newAssignments.push(assignment);
 			});
 		}
@@ -70,8 +71,8 @@ export const assignmentGenerator = {
 
 const getEndDate = async () => {
 	const endDate = new Date();
-	console.log(endDate);
+
 	endDate.setUTCDate(new Date().getUTCDate() + NUM_DAYS_IN_WEEK * (await assignmentGenerator.getWeeksRange()));
-	console.log(endDate);
+
 	return endDate;
 };

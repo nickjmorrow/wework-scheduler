@@ -80,7 +80,6 @@ describe('assignment generator', () => {
 
 		const generatedAssignments = await assignmentGenerator.generateAssignments();
 
-		console.log(formatAssignments(generatedAssignments));
 		expect(formatAssignments(generatedAssignments)).toEqual(expectedAssignments);
 	});
 });

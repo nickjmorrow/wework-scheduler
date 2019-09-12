@@ -29,7 +29,7 @@ export const assignmentService = {
 	addAssignment: async (assignment: Assignment) => {
 		return await getConnection().manager.save(Assignment, assignment);
 	},
-	generateAssignments: async () => {
+	persistGeneratedAssignments: async () => {
 		const newAssignments = await assignmentGenerator.generateAssignments();
 		console.log(newAssignments);
 		await getConnection().manager.insert(Assignment, newAssignments);

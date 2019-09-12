@@ -13,7 +13,7 @@ export const assignmentResolver = {
 				return;
 			}
 
-			await assignmentService.generateAssignments();
+			await assignmentService.persistGeneratedAssignments();
 			return true;
 		},
 		async updateAssignment(_: any, args: { assignmentId: number; laborerId: number }, ctx: any) {

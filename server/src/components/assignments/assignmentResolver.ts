@@ -12,7 +12,6 @@ export const assignmentResolver = {
 			if (!isAuthorized(ctx)) {
 				return;
 			}
-
 			await assignmentService.persistGeneratedAssignments();
 			return true;
 		},

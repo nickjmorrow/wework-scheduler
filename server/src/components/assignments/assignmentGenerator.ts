@@ -1,13 +1,11 @@
-import { Laborer, laborerService } from '~/components/laborers';
-import { NUM_DAYS_IN_WEEK, WEEKS_RANGE, DayOfWeek } from '~/constants';
-import { isDateEqual } from '~/utilities/isDateEqual';
-import { choreService } from '../chores';
-import { settingsProvider } from '~/components/settings';
-
+import { Assignment } from '~/components/assignments/Assignment';
 // Intra
 import { assignmentService } from '~/components/assignments/assignmentService';
-import { Assignment } from '~/components/assignments/Assignment';
-import { Throw } from '../core/Throw';
+import { Laborer, laborerService } from '~/components/laborers';
+import { settingsProvider } from '~/components/settings';
+import { DayOfWeek, NUM_DAYS_IN_WEEK, WEEKS_RANGE } from '~/constants';
+import { isDateEqual } from '~/utilities/isDateEqual';
+import { choreService } from '../chores';
 
 export const getWeeksRange = async () => parseInt((await settingsProvider.getDatabaseSetting(WEEKS_RANGE)).value, 10);
 
@@ -64,6 +62,7 @@ export const assignmentGenerator = {
 			});
 		}
 
+		console.log(newAssignments);
 		return newAssignments;
 	},
 	getWeeksRange,

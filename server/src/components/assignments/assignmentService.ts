@@ -31,7 +31,10 @@ export const assignmentService = {
 	},
 	persistGeneratedAssignments: async () => {
 		const newAssignments = await assignmentGenerator.generateAssignments();
-		console.log(newAssignments);
+		if (newAssignments.length === 0) {
+			return true;
+		}
+
 		await getConnection().manager.insert(Assignment, newAssignments);
 		return true;
 	},

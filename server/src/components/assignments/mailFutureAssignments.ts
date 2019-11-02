@@ -26,18 +26,21 @@ export const mailFutureAssignments = async () => {
 	const futureAssignments = await assignmentService.getOrCreateFutureAssignments();
 
 	const assignmentDates = futureAssignments.map(fa => new Date(fa.assignmentDate));
-	const minimumDate = assignmentDates.reduce((agg, cur, i, arr) => {
+
+	const minimumDate = assignmentDates.reduce((agg, cur) => {
 		if (cur > agg) {
 			cur = agg;
 		}
 		return cur;
 	}, assignmentDates[0]);
-	const maximumDate = assignmentDates.reduce((agg, cur, i, arr) => {
+
+	const maximumDate = assignmentDates.reduce((agg, cur) => {
 		if (cur < agg) {
 			cur = agg;
 		}
 		return cur;
 	}, assignmentDates[0]);
+
 	const laborers = await laborerService.getLaborers();
 	const dateRange = getPrettyDateRange(minimumDate, maximumDate);
 	laborers.forEach(l => sendMailToLaborer(l, dateRange));

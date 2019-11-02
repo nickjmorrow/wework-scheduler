@@ -14,7 +14,7 @@ export const assignmentTypeDefs = `
 	}
 	
 	type Mutation {
-		generateAssignments: Boolean!
+		generateAssignments: Boolean
 		updateAssignment(assignmentId: Int!, laborerId: Int!): Assignment!
 	}
 `;

@@ -1,9 +1,9 @@
-import { EditIconButton, IOption, Select, Typography } from '@nickjmorrow/react-component-library';
+import { EditIconButton, IOption, Select, Typography, useThemeContext } from '@nickjmorrow/react-component-library';
 import gql from 'graphql-tag';
 import React, { useState } from 'react';
 import { Mutation } from 'react-apollo';
 import { toast } from 'react-toastify';
-import { dayOfWeekOptions, monthMapping, NAME } from '../constants';
+import { monthMapping, NAME } from '../constants';
 import { Assignment as AssignmentType, Laborer } from '../types';
 
 export const updateAssignmentMutation = gql`
@@ -14,7 +14,11 @@ export const updateAssignmentMutation = gql`
 	}
 `;
 
-export const Assignment: React.FC<{ assignment: AssignmentType; laborers: Laborer[] }> = ({ assignment, laborers }) => {
+export const Assignment: React.FC<{ assignment: AssignmentType; laborers: Laborer[]; index: number }> = ({
+	assignment,
+	laborers,
+	index,
+}) => {
 	const formattedAssignment = formatAssignment(assignment);
 	const [isEditing, setIsEditing] = useState(false);
 	const [hasMadeChange, setHasMadeChange] = useState(false);
@@ -22,6 +26,7 @@ export const Assignment: React.FC<{ assignment: AssignmentType; laborers: Labore
 		value: assignment.laborer.laborerId,
 		label: assignment.laborer.name,
 	});
+	const theme = useThemeContext();
 
 	const laborerOptions = laborers.map(l => ({
 		value: l.laborerId,
@@ -69,10 +74,12 @@ export const Assignment: React.FC<{ assignment: AssignmentType; laborers: Labore
 						style={{
 							display: 'flex',
 							flexDirection: 'row',
-							padding: '8px',
+							padding: '16px',
 							justifyContent: 'flex-start',
 							width: 'max-content',
 							minHeight: '64px',
+							backgroundColor: index % 2 == 1 ? theme.colors.core.cs1 : 'transparent',
+							borderRadius: theme.border.borderRadius.br1,
 						}}
 					>
 						<div style={{ minWidth: '250px', display: 'flex', alignItems: 'center' }}>

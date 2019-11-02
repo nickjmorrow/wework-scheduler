@@ -64,7 +64,7 @@ export const Assignments: React.FC = () => {
 												appear={true}
 												enterTimeout={200 + i * 50}
 											>
-												<Assignment assignment={a} laborers={data.laborers} />
+												<Assignment index={i} assignment={a} laborers={data.laborers} />
 											</Fade>
 										))
 									) : (

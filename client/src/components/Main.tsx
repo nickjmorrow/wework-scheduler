@@ -25,6 +25,7 @@ import './layout.css';
 import { SetPassword } from './SetPassword';
 import { ToastContainer } from 'react-toastify';
 import { css } from 'glamor';
+import { AlertEnterPassword } from './AlertEnterPassword';
 
 const hues = [330, 200];
 const chosenHue = hues[Math.floor(Math.random() * hues.length)];
@@ -39,6 +40,16 @@ const themeInputs: ArgumentType<typeof updateThemeInputs>[0] = {
 	colors: {
 		core: {
 			hue: chosenHue,
+			middleLightness: 55,
+		},
+		warning: {
+			saturation: 20,
+			middleLightness: 50,
+		},
+	},
+	border: {
+		borderRadius: {
+			br1: '12',
 		},
 	},
 	defaultShowBoxShadow: false,
@@ -52,6 +63,7 @@ export const Main: React.FC = () => {
 			<Wrapper>
 				<PopulatedAppBar appName={'WeWork Scheduler'} styleVariant={2} githubLink={GITHUB_LINK} />
 				<StyledMain spacing={spacing}>
+					<AlertEnterPassword />
 					<Assignments />
 					<Chores />
 					<Laborers />

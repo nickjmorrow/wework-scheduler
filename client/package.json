@@ -61,7 +61,6 @@
 		"gatsby"
 	],
 	"scripts": {
-		"prebuild": "npm install -g gatsby && npm install && rm -rf .cache",
 		"build": "gatsby build",
 		"dev": "gatsby develop",
 		"deploy": "npm install -g gatsby && npm install && npm run serve",

@@ -27,6 +27,10 @@ I fully intend for this to just be a hobby project that I check up on now and th
 
 ## How to run it
 
+To initialize the database, run the [script found here](https://github.com/nickjmorrow/wework-scheduler/blob/master/server/src/infrastructure/database/initialize_data_model.sql).
+
+Create an `.env` file at `server/.env` to hold environment variables. This can be based off `server/.env.example`.
+
 For the front-end:
 
 ```

@@ -1,4 +1,4 @@
-import { Button, useThemeContext } from '@nickjmorrow/react-component-library';
+import { Button } from '@nickjmorrow/react-component-library';
 import gql from 'graphql-tag';
 import React, { useState } from 'react';
 import { graphql, MutationFunc } from 'react-apollo';
@@ -13,7 +13,6 @@ export const generateAssignmentsMutation = gql`
 `;
 
 const prettyHues = [{ first: 200, second: 300 }, { first: 50, second: 320 }, { first: 270, second: 170 }];
-// const prettyHues = [{first: 270, second: 170}];
 
 const getPrettyHues = () => {
 	let randomIndex = Math.floor(Math.random() * prettyHues.length);
@@ -28,7 +27,6 @@ const GenerateAssignmentsInternal: React.FC<{ refetch(): void; mutate: MutationF
 	const [isLoading, setIsLoading] = useState(false);
 	const notify = () => toast('Assignments have been generated if not already created for the next few weeks.');
 	const [currentPrettyHues] = useState(getPrettyHues());
-	const { typography } = useThemeContext();
 	const handleClick = async () => {
 		setIsLoading(true);
 		await mutate();

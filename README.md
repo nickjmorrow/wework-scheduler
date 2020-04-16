@@ -12,8 +12,8 @@ We wanted a way for people to be randomly and automatically assigned to chores a
 
 ## Technical Stack: NodeJS, TypeScript, React, Gatsby, PostgreSQL, Apollo
 
-- The **front-end** is built using React with heavy reliance on a [personal component library](https://github.com/nickjmorrow/react-component-library).
-- For **state management**, I'm using Apollo. This isn't a state-heavy app, and the mutations / fetches are fairly simple, otherwise I would've favored redux.
+- The **front-end** is built using React (TypeScript) with heavy reliance on a [personal component library](https://github.com/nickjmorrow/react-component-library). The front-end is deployed to Netlify because I've found that easiest.
+- For **state management**, I'm using Apollo. This isn't a state-heavy app, and the mutations / fetches are fairly simple, otherwise I would've favored Redux.
 - For the **back-end**, I'm using a NodeJS app deployed to Heroku and written in TypeScript. I knew the app was going to stay small and just handle a few requests, so NodeJS felt like the natural tool to turn to.
 - For the **database**, I'm using PostgreSQL. No strong reason why, I just wanted to use something relational for this given the data makes sense to store relationally as opposed to the NoSQL route.
 
